@@ -16,14 +16,8 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/add_ingredient')
-def add_ingredient():
-    return render_template('')
-
-
-def insert_ingredient(ingredient):
-    mongo.db.ingredients.insert_one(ingredient)
-
+def home():
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
