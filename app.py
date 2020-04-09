@@ -19,6 +19,19 @@ mongo = PyMongo(app)
 def home():
     return render_template('home.html')
 
+
+@app.route('/add_cocktail', methods=['GET', 'POST'])
+def add_cocktail():
+    if request.method == 'GET':
+        return render_template('add_cocktail.html',
+                               ingredients=mongo.db.ingredients.find())
+    if request.method == 'POST': 
+        print(request.form)
+        mongo.db.recepie.insert_one(request.form)
+        return render_template('add_cocktail.html',
+                               ingredients=mongo.db.ingredients.find())
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

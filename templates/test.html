@@ -1,0 +1,11 @@
+      name = request.form['name']
+        drink_type = request.form['type']
+        ingredients = request.form['ingredients']
+        directions = request.form['description']
+        url = request.form['img-url']
+
+        new_doc = {'name': name,
+                   'drink_type': drink_type,
+                   'ingredeients': ingredients,
+                   'directions': directions,
+                   'img-url': url}

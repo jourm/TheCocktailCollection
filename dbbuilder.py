@@ -18,12 +18,15 @@ def getnewingredient(id):
         + str(id))
 
     for value in response.json().values():
-
-        return{"ingredient": value[0]['strIngredient'],
-               "description": value[0]['strDescription'],
-               "type": value[0]['strType'],
-               "alcohol": value[0]['strAlcohol'],
-               "abv": value[0]['strABV']}
+    
+        if value is None:
+            return False
+        else:
+            return{"ingredient": value[0]['strIngredient'],
+                   "description": value[0]['strDescription'],
+                   "type": value[0]['strType'],
+                   "alcohol": value[0]['strAlcohol'],
+                   "abv": value[0]['strABV']}
 
 
 def mongo_connect(url):
@@ -39,7 +42,9 @@ conn = mongo_connect(MONGO_URI)
 
 coll = conn[DBS_NAME][COLLECTION_NAME]
 
-for i in range(1, 600):
-    new_ingredient = getnewingredient(i)
+for i in range(601, 1000):
 
+    new_ingredient = getnewingredient(i)
+    if new_ingredient is False:
+        continue
     coll.insert_one(new_ingredient)
