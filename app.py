@@ -59,6 +59,13 @@ def add_ingredient():
                                ingType=mongo.db.ingType.find())
 
 
+@app.route('/display_ingredient/<ingredient_id>')
+def get_ingredient(ingredient_id):
+    ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(ingredient_id)})
+    return render_template('get_ingredient.html', ingredient=ingredient)
+
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

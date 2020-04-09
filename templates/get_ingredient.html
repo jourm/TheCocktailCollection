@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+Ingredient Info
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="card" style="width: 30rem;">
+		<img src="https://www.thecocktaildb.com/images/ingredients/{{ingredient['ingredient']}}-Medium.png" class="card-img-top" alt="image of Ingredient">
+		<div class="card-body">
+			<h5 class="card-title">{{ingredient['ingredient']}}</h5>
+			<p class="card-text">{{ingredient['descriprion']}}</p>
+            <p class="card-text">{{ingredient['type']}}</p>
+            <p class="card-text">{{ingredient['alcohol']}}</p>
+            <p class="card-text">{{ingredient['abv']}}</p>
+			<a href="#" class="btn btn-primary">Go somewhere</a>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
