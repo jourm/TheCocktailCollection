@@ -54,7 +54,7 @@ def add_ingredient():
         return render_template('add_ingredient.html',
                                ingType=mongo.db.ingType.find())
     if request.method == 'POST':
-        mongo.db.ingredients.insert_one(request.form)
+        mongo.db.ingredients.insert_one(request.form.to_dict())
         return render_template('add_ingredient.html',
                                ingType=mongo.db.ingType.find())
 
