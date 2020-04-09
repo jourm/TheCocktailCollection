@@ -25,11 +25,38 @@ def add_cocktail():
     if request.method == 'GET':
         return render_template('add_cocktail.html',
                                ingredients=mongo.db.ingredients.find())
-    if request.method == 'POST': 
-        print(request.form)
-        mongo.db.recepie.insert_one(request.form)
+
+    if request.method == 'POST':
+        name = request.form['name']
+        drink_type = request.form['type']
+        ingredients = request.form.getlist('ingredients')
+        print(ingredients)
+        ingredient_list = []
+        for i in range(0, len(ingredients), 3):
+            ingredient_list.append([ingredients[i], ingredients[i+1],
+                                    ingredients[i+2]])
+        directions = request.form['description']
+        url = request.form['img-url']
+
+        new_doc = {'name': name,
+                   'drink_type': drink_type,
+                   'ingredeients': ingredient_list,
+                   'directions': directions,
+                   'img-url': url}
+        mongo.db.recepies.insert_one(new_doc)
         return render_template('add_cocktail.html',
                                ingredients=mongo.db.ingredients.find())
+
+
+@app.route('/add_ingredient', methods=['GET', 'POST'])
+def add_ingredient():
+    if request.method == 'GET':
+        return render_template('add_ingredient.html',
+                               ingType=mongo.db.ingType.find())
+    if request.method == 'POST':
+        mongo.db.ingredients.insert_one(request.form)
+        return render_template('add_ingredient.html',
+                               ingType=mongo.db.ingType.find())
 
 
 if __name__ == '__main__':

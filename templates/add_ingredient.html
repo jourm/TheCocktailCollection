@@ -2,6 +2,42 @@
 {% block title %}
 Add Ingredient
 {% endblock %}
+
 {% block content %}
 
+<div class="row">
+	<div class="col-sm-12">
+		<form method="POST" action="/add_ingredient">
+			<div class="form-group">
+				<label for="name">Ingredient</label>
+				<input type="text" class="form-control" id="name" name="ingredient" required>
+	        </div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="type">ingredient type</label>
+				<select class="form-control" name="ingType" id="type">
+                {% for type in ingType %}
+                 <option value="{{ type['name'] }}"> {{ type['name'] }} </option>
+                {% endfor %}
+                </select>
+			</div>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="alcohol" name="alcohol">
+                <label class="custom-control-label" for="alcohol">Alcohol content yes/no </label>
+            </div>
+            <div class="form-group">
+				<label for="amount">Alcohol content</label>
+				<input type="number" class="form-control" id="abv" name="abv">
+		    </div>	
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block script %}
 {% endblock %}

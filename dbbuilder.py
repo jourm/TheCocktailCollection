@@ -41,10 +41,22 @@ def mongo_connect(url):
 conn = mongo_connect(MONGO_URI)
 
 coll = conn[DBS_NAME][COLLECTION_NAME]
+coll_intype = conn[DBS_NAME]['ingType']
 
-for i in range(601, 1000):
-
+categories = []
+for i in range(1, 1000):
+    
     new_ingredient = getnewingredient(i)
     if new_ingredient is False:
         continue
-    coll.insert_one(new_ingredient)
+    else:
+        if new_ingredient['type'] not in categories:
+            categories.append(new_ingredient['type'])
+            
+            
+#       coll.insert_one(new_ingredient)
+print(categories)
+
+
+for i in categories:
+    coll_intype.insert_one({'name': i})
