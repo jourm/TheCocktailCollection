@@ -38,7 +38,6 @@ Add New Cocktail Recipe
 					    </select>
 							</div>
 							<button id="add-ingredient" type="button" class="btn btn-success">Add to recepie</button>
-							<button id="remove-ingredient" type="button" class="btn btn-primary">Remove from recepie</button>
 						</div>
 						<div id="ingredient-list">
 						</div>
@@ -63,7 +62,7 @@ Add New Cocktail Recipe
         
         $("#add-ingredient").click(function(){
 
-            $("#ingredient-list").append(`  <div class="form-row" id="added_ingredient${counter}">
+            $("#ingredient-list").append(`  <div class="form-row" id="added_ingredient">
 					                            <div class="form-group col-md-2">   
 						                        <input type="number" class="form-control" value="${ $("#amount").val() }" id="amount${counter}" name="ingredients">
 		                                        </div>
@@ -75,18 +74,14 @@ Add New Cocktail Recipe
                                                         <option value="${ $("#ingredient").val() }">  ${ $("#ingredient option:selected").text() }  </option>
                                                     </select>
                                                 </div>
-                                                <button type="button" class="delete btn btn-danger" id="btn" >Delete</button>
+                                                <button type="button" class="delete btn btn-danger"  >Delete</button>
                                             </div> `)
             counter++
             $(".delete").click(function(){
-            $(this).parent().remove();
+                counter--
+                $(this).parent().remove();
         });
         });
-        $("#remove-ingredient").click(function(){
-            counter--;
-            $("#added_ingredient"+ counter).remove();
-        }); 
-        
     });
 </script>
 {% endblock %}
