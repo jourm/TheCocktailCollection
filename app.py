@@ -40,7 +40,7 @@ def add_cocktail():
 
         new_doc = {'name': name,
                    'drink_type': drink_type,
-                   'ingredeients': ingredient_list,
+                   'ingredients': ingredient_list,
                    'directions': directions,
                    'img-url': url}
         mongo.db.recepies.insert_one(new_doc)
@@ -59,11 +59,35 @@ def add_ingredient():
                                ingType=mongo.db.ingType.find())
 
 
-@app.route('/display_ingredient/<ingredient_id>')
+@app.route('/get_ingredient/<ingredient_id>')
 def get_ingredient(ingredient_id):
-    ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(ingredient_id)})
+    ingredient = mongo.db.ingredients.find_one(
+        {"_id": ObjectId(ingredient_id)})
     return render_template('get_ingredient.html', ingredient=ingredient)
 
+
+@app.route('/get_recepie/<recepie_id>')
+def get_recepie(recepie_id):
+    recepie = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
+
+    for ingredient in recepie['ingredients']:
+        ingredient.append(mongo.db.ingredients.find_one({"_id":
+                                                         ObjectId(ingredient[2])})['ingredient'])
+    return render_template('get_cocktail.html', cocktail=recepie)
+
+
+@app.route('/edit_recepie/<recepie_id>')
+def edit_recepie(recepie_id):
+    recepie = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
+    counter = 0
+    for ingredient in recepie['ingredients']:
+        ingredient.append(mongo.db.ingredients.find_one({"_id":
+                                                         ObjectId(ingredient[2])})['ingredient'])
+        ingredient.append(counter)
+        counter += 1
+    
+    return render_template('edit_cocktail.html', cocktail=recepie,
+                           counter=counter)
 
 
 if __name__ == '__main__':

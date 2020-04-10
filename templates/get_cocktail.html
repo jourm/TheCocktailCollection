@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ cocktail['name'] }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="card" style="width: 30rem;">
+		<img src="{{cocktail['img-url'] }}" class="card-img-top" alt="image of cocktail">
+		<div class="card-body">
+			<h5 class="card-title">{{cocktail['name']}}</h5>
+			<p class="card-text">{{cocktail['drink_type']}}</p>
+            <ul>
+            {% for ingredient in cocktail['ingredients'] %}
+                <li>{{ingredient[0]}} {{ingredient[1]}} of <a href="{{url_for('get_ingredient', ingredient_id=ingredient[2])}}">{{ingredient[3]}} </a> </li>
+            {% endfor %}
+            </ul>
+            <p class="card-text">{{cocktail['directions']}}</p>
+			<a href="#" class="btn btn-primary">Collect</a>
+            <a href="#" class="btn btn-primary">Clone</a>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
