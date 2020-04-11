@@ -1,3 +1,4 @@
+import bcrypt
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -93,8 +94,8 @@ def edit_recepie(recepie_id):
 
 @app.route('/user_home')
 def user_home():
-    if 'username' in session:
-        return 'you are logged in as' + session['username']
+    if 'email' in session:
+        return 'you are logged in as' + session['email']
 
     return render_template('login.html')
 
@@ -106,7 +107,24 @@ def login():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    return render_template('register.html')
+    if request.method == 'GET':
+        return render_template('register.html')
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'email': request.form['email']})
+
+        if existing_user is None:
+            hashpassword = bcrypt.hashpw(request.form['password']
+                                         .encode('utf-8'), bcrypt.gensalt())
+            users.insert({'email': request.form['email'],
+                          'username': request.form['username'],
+                          'password': hashpassword,
+                          'img-url': request.form['img-url']})
+            session['email'] = request.form['email']
+            return redirect(url_for('user_home'))
+
+        return 'that email anddress is already in use'
+    return render_template
 
 
 if __name__ == '__main__':
