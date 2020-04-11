@@ -91,7 +91,26 @@ def edit_recepie(recepie_id):
                            ingredients=mongo.db.ingredients.find())
 
 
+@app.route('/user_home')
+def user_home():
+    if 'username' in session:
+        return 'you are logged in as' + session['username']
+
+    return render_template('login.html')
+
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    return render_template('register.html')
+
+
 if __name__ == '__main__':
-    app.run(host = os.environ.get('IP'),
-            port = int(os.environ.get('PORT')),
-            debug = True)
+    app.secret_key = os.environ.get('SECRET')
+    app.run(host=os.environ.get('IP'),
+            port=int(os.environ.get('PORT')),
+            debug=True)
