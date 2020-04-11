@@ -62,11 +62,11 @@ Edit {{ cocktail[name] }} Recipe
 						</div>
 								<div class="form-group">
 									<label for="description">Description</label>
-									<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+									<textarea class="form-control" id="description" name="description" rows="3"> {{ cocktail['directions'] }}</textarea>
 								</div>
 								<div class="formgroup">
 									<label for="img-url">Image Url</label>
-									<input class="form-control" id="img-url" name="img-url">
+									<input class="form-control" value="{{ cocktail['img-url'] }}" id="img-url" name="img-url">
                 </div>
 									<button type="submit" class="btn btn-primary">Submit</button>
 		</form>

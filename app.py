@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import os
@@ -85,12 +85,13 @@ def edit_recepie(recepie_id):
                                                          ObjectId(ingredient[2])})['ingredient'])
         ingredient.append(counter)
         counter += 1
-    
+
     return render_template('edit_cocktail.html', cocktail=recepie,
-                           counter=counter)
+                           counter=counter,
+                           ingredients=mongo.db.ingredients.find())
 
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+    app.run(host = os.environ.get('IP'),
+            port = int(os.environ.get('PORT')),
+            debug = True)
