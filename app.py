@@ -100,9 +100,18 @@ def user_home():
     return render_template('login.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
-    return render_template('login.html')
+    users = mongo.db.users
+    login_user = users.find_one({'email': request.form['email']})
+
+    if login_user:
+        if bcrypt.hashpw(request.form['password'].encode('utf-8'),
+                         login_user['password']) == login_user['password']:
+            session['email'] = request.form['email']
+            return redirect(url_for('user_home'))
+        
+    return 'Invail Email/Password combination'
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -119,7 +128,8 @@ def register():
             users.insert({'email': request.form['email'],
                           'username': request.form['username'],
                           'password': hashpassword,
-                          'img-url': request.form['img-url']})
+                          'img-url': request.form['img-url'],
+                          'collections': []})
             session['email'] = request.form['email']
             return redirect(url_for('user_home'))
 
