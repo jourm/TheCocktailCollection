@@ -16,8 +16,9 @@
             {% endfor %}
             </ul>
             <p class="card-text">{{cocktail['directions']}}</p>
-			<a href="#" class="btn btn-primary">Collect</a>
-            <a href="#" class="btn btn-primary">Clone</a>
+            {% if user %}
+                <a href="{{ url_for('delete_recepie', cocktail_id=cocktail['_id']) }}" class="btn btn-warning">Delete cocktail</a>
+            {% endif %}
 		</div>
 	</div>
 </div>

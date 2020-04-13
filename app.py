@@ -1,5 +1,5 @@
 import bcrypt
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import os
@@ -18,7 +18,9 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    recepies = mongo.db.recepies.find()
+
+    return render_template('home.html', recepies=recepies)
 
 
 @app.route('/add_cocktail', methods=['GET', 'POST'])
@@ -43,7 +45,8 @@ def add_cocktail():
                    'drink_type': drink_type,
                    'ingredients': ingredient_list,
                    'directions': directions,
-                   'img-url': url}
+                   'img-url': url,
+                   'author': session['user_id']}
         mongo.db.recepies.insert_one(new_doc)
         return render_template('add_cocktail.html',
                                ingredients=mongo.db.ingredients.find())
@@ -74,6 +77,10 @@ def get_recepie(recepie_id):
     for ingredient in recepie['ingredients']:
         ingredient.append(mongo.db.ingredients.find_one({"_id":
                                                          ObjectId(ingredient[2])})['ingredient'])
+    if 'user_id' in session:
+        user = mongo.db.users.find_one({'_id': ObjectId(session['user_id'])})
+        return render_template('get_cocktail.html', cocktail=recepie,
+                               user=user)
     return render_template('get_cocktail.html', cocktail=recepie)
 
 
@@ -92,10 +99,21 @@ def edit_recepie(recepie_id):
                            ingredients=mongo.db.ingredients.find())
 
 
+@app.route('/delete_recepie/<cocktail_id>')
+def delete_recepie(cocktail_id):
+    cocktail = mongo.db.recepies.find_one({'_id': ObjectId(cocktail_id)})
+    if cocktail['author'] == session['user_id']:
+        mongo.db.delete_one({'_id': ObjectId(cocktail_id)})
+        flash('Recepie Deleted')
+        return redirect(url_for('home'))
+    else:
+        flash('You did not create this recepie!')
+
 @app.route('/user_home')
 def user_home():
-    if 'email' in session:
-        return 'you are logged in as' + session['email']
+    if 'username' in session:
+        flash('you are logged in as' + session['username'])
+        return 'you are logged in as' + session['username']
 
     return render_template('login.html')
 
@@ -103,14 +121,16 @@ def user_home():
 @app.route('/login', methods=['POST'])
 def login():
     users = mongo.db.users
-    login_user = users.find_one({'email': request.form['email']})
+    login_user = users.find_one({'username': request.form['username']})
 
     if login_user:
         if bcrypt.hashpw(request.form['password'].encode('utf-8'),
                          login_user['password']) == login_user['password']:
-            session['email'] = request.form['email']
+            session['username'] = request.form['username']
+            session['user_id'] = str(login_user['_id'])
+
             return redirect(url_for('user_home'))
-        
+
     return 'Invail Email/Password combination'
 
 
@@ -130,10 +150,9 @@ def register():
                           'password': hashpassword,
                           'img-url': request.form['img-url'],
                           'collections': []})
-            session['email'] = request.form['email']
             return redirect(url_for('user_home'))
 
-        return 'that email anddress is already in use'
+        return 'That Username is already taken'
     return render_template
 
 

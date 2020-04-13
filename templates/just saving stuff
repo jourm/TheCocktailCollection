@@ -1,0 +1,9 @@
+                <form action="/collect" method="POST">
+                <label for="collection">Collection</label>
+                <select name="collection" id="collection">
+                {% for collection in user['collections'] %}
+                    <option value="collection['name']"></option>
+                {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Add to collection</button>
+                </form>
