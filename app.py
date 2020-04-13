@@ -94,16 +94,16 @@ def edit_recepie(recepie_id):
         ingredient.append(counter)
         counter += 1
 
-    return render_template('edit_cocktail.html', cocktail=recepie,
+    return render_template('edit_recepie.html', cocktail=recepie,
                            counter=counter,
                            ingredients=mongo.db.ingredients.find())
 
 
-@app.route('/delete_recepie/<cocktail_id>')
-def delete_recepie(cocktail_id):
-    cocktail = mongo.db.recepies.find_one({'_id': ObjectId(cocktail_id)})
+@app.route('/delete_recepie/<recepie_id>')
+def delete_recepie(recepie_id):
+    cocktail = mongo.db.recepies.find_one({'_id': ObjectId(recepie_id)})
     if cocktail['author'] == session['user_id']:
-        mongo.db.delete_one({'_id': ObjectId(cocktail_id)})
+        mongo.db.delete_one({'_id': ObjectId(recepie_id)})
         flash('Recepie Deleted')
         return redirect(url_for('home'))
     else:

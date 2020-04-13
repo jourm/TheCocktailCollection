@@ -3,11 +3,13 @@
 The Cocktail Collection
 {% endblock %}
 {% block content %}
-{% for recepie in recepies %}
-    <a href="{{url_for('get_recepie', recepie_id=recepie['_id'])}}">{{ recepie['name'] }}</a>
-
-{% endfor %}
-	
+<ul>
+	{% for recepie in recepies %}
+	<li>
+		<a href="{{url_for('get_recepie', recepie_id=recepie['_id'])}}">{{ recepie['name'] }}</a>
+	</li>
+	{% endfor %}
+</ul>
 
 {% endblock %}
 {% block script %}
