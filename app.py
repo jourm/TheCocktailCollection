@@ -33,7 +33,6 @@ def add_cocktail():
         name = request.form['name']
         drink_type = request.form['type']
         ingredients = request.form.getlist('ingredients')
-        print(ingredients)
         ingredient_list = []
         for i in range(0, len(ingredients), 3):
             ingredient_list.append([ingredients[i], ingredients[i+1],
@@ -81,8 +80,8 @@ def get_ingredient(ingredient_id):
 @app.route('/get_recepie/<recepie_id>')
 def get_recepie(recepie_id):
     recepie = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
-
     for ingredient in recepie['ingredients']:
+
         ingredient.append(mongo.db.ingredients.find_one({"_id":
                                                          ObjectId(ingredient[2])})['ingredient'])
     if 'user_id' in session:
@@ -92,26 +91,60 @@ def get_recepie(recepie_id):
     return render_template('get_cocktail.html', cocktail=recepie)
 
 
-@app.route('/edit_recepie/<recepie_id>')
+@app.route('/edit_recepie/<recepie_id>', methods=['GET', 'POST'])
 def edit_recepie(recepie_id):
     recepie = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
-    counter = 0
-    for ingredient in recepie['ingredients']:
-        ingredient.append(mongo.db.ingredients.find_one({"_id":
-                                                         ObjectId(ingredient[2])})['ingredient'])
-        ingredient.append(counter)
-        counter += 1
+    if recepie['author'] == session['user_id']:
+        if request.method == 'GET':
+            counter = 0
+            for ingredient in recepie['ingredients']:
+                ingredient.append(mongo.db.ingredients.find_one({"_id":
+                                                                 ObjectId(ingredient[2])})['ingredient'])
+                ingredient.append(counter)
+                counter += 1
 
-    return render_template('edit_recepie.html', cocktail=recepie,
-                           counter=counter,
-                           ingredients=mongo.db.ingredients.find())
+            return render_template('edit_recepie.html', cocktail=recepie,
+                                   counter=counter,
+                                   ingredients=mongo.db.ingredients.find())
+
+        if request.method == 'POST':
+            name = request.form['name']
+            drink_type = request.form['type']
+            ingredients = request.form.getlist('ingredients')
+            
+            ingredient_list = []
+            for i in range(0, len(ingredients), 3):
+                ingredient_list.append([ingredients[i], ingredients[i+1],
+                                        ingredients[i+2]])
+            directions = request.form['description']
+            url = request.form['img-url']
+            if 'user_id' in session:
+                new_doc = {'name': name,
+                           'drink_type': drink_type,
+                           'ingredients': ingredient_list,
+                           'directions': directions,
+                           'img-url': url,
+                           'author': session['user_id']}
+            else:
+                new_doc = {'name': name,
+                           'drink_type': drink_type,
+                           'ingredients': ingredient_list,
+                           'directions': directions,
+                           'img-url': url,
+                           'author': ''}
+
+            mongo.db.recepies.update({'_id': ObjectId(recepie_id)}, new_doc)
+            return url_for('get_recepie', recepie_id=recepie_id)
+    else:
+        flash('Not your recepie to edit')
+        pass
 
 
 @app.route('/delete_recepie/<recepie_id>')
 def delete_recepie(recepie_id):
     cocktail = mongo.db.recepies.find_one({'_id': ObjectId(recepie_id)})
     if cocktail['author'] == session['user_id']:
-        mongo.db.delete_one({'_id': ObjectId(recepie_id)})
+        mongo.db.recepies.remove({'_id': ObjectId(recepie_id)})
         flash('Recepie Deleted')
         return redirect(url_for('home'))
     else:

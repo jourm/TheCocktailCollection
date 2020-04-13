@@ -5,7 +5,7 @@ Edit {{ cocktail[name] }} Recipe
 {% block content %}
 <div class="row">
 	<div class="col-sm-12">
-		<form method="POST" action="/add_cocktail">
+		<form method="POST" action="/edit_recepie/{{ cocktail['_id'] }}">
 			<div class="form-group">
 				<label for="name">Name</label>
 				<input type="text" value="{{cocktail['name']}}" class="form-control" id="name" name="name" required>
@@ -52,7 +52,7 @@ Edit {{ cocktail[name] }} Recipe
 		                        </div>
 								<div class="form-group col-md-3">
 									<select  id="ingredient{{ ingredient[4] }}" class="form-control" name="ingredients">
-                                        <option value="${{ ingredient[2] }} ">  {{ ingredient[3] }}  </option>
+                                        <option value="{{ ingredient[2] }}">  {{ ingredient[3] }}  </option>
                                     </select>
 								</div>
                                 <button type="button" class="delete btn btn-danger"  >Delete</button>
