@@ -40,13 +40,21 @@ def add_cocktail():
                                     ingredients[i+2]])
         directions = request.form['description']
         url = request.form['img-url']
+        if 'user_id' in session:
+            new_doc = {'name': name,
+                       'drink_type': drink_type,
+                       'ingredients': ingredient_list,
+                       'directions': directions,
+                       'img-url': url,
+                       'author': session['user_id']}
+        else:
+            new_doc = {'name': name,
+                       'drink_type': drink_type,
+                       'ingredients': ingredient_list,
+                       'directions': directions,
+                       'img-url': url,
+                       'author': ''}
 
-        new_doc = {'name': name,
-                   'drink_type': drink_type,
-                   'ingredients': ingredient_list,
-                   'directions': directions,
-                   'img-url': url,
-                   'author': session['user_id']}
         mongo.db.recepies.insert_one(new_doc)
         return render_template('add_cocktail.html',
                                ingredients=mongo.db.ingredients.find())
@@ -108,6 +116,7 @@ def delete_recepie(recepie_id):
         return redirect(url_for('home'))
     else:
         flash('You did not create this recepie!')
+
 
 @app.route('/user_home')
 def user_home():
