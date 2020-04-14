@@ -135,7 +135,7 @@ def edit_recepie(recepie_id):
                            'author': ''}
 
             mongo.db.recepies.update({'_id': ObjectId(recepie_id)}, new_doc)
-            return url_for('get_recepie', recepie_id=recepie_id)
+            return redirect(url_for('get_recepie', recepie_id=recepie_id))
     else:
         flash('Not your recepie to edit')
         pass
