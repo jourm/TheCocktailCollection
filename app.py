@@ -89,7 +89,7 @@ def get_recepie(recepie_id):
         user['_id'] = str(user['_id'])
         return render_template('get_cocktail.html', cocktail=recepie,
                                user=user)
-    return render_template('get_cocktail.html', cocktail=recepie, user='None')
+    return render_template('get_cocktail.html', cocktail=recepie, user=False)
 
 
 @app.route('/edit_recepie/<recepie_id>', methods=['GET', 'POST'])

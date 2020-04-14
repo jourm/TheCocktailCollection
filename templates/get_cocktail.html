@@ -5,22 +5,50 @@
 
 {% block content %}
 <div class="row">
-	<div class="card" style="width: 30rem;">
-		<img src="{{cocktail['img-url'] }}" class="card-img-top" alt="image of cocktail">
-		<div class="card-body">
-			<h5 class="card-title">{{cocktail['name']}}</h5>
-			<p class="card-text">{{cocktail['drink_type']}}</p>
-            <ul>
-            {% for ingredient in cocktail['ingredients'] %}
-                <li>{{ingredient[0]}} {{ingredient[1]}} of <a href="{{url_for('get_ingredient', ingredient_id=ingredient[2])}}">{{ingredient[3]}} </a> </li>
-            {% endfor %}
-            </ul>
-            <p class="card-text">{{cocktail['directions']}}</p>
-            {% if user['_id'] == cocktail['author'] %}
-                <a href="{{ url_for('delete_recepie', recepie_id=cocktail['_id']) }}" class="btn btn-warning">Delete recepie</a>
-                <a href="{{ url_for('edit_recepie', recepie_id=cocktail['_id']) }}" class="btn btn-warning">Edit recepie</a>
-            {% endif %}
+	<div class="col-sm-12">
+		<div class="card" style="width: 30rem;">
+			<img src="{{cocktail['img-url'] }}" class="card-img-top" alt="image of cocktail">
+			<div class="card-body">
+				<h5 class="card-title">{{cocktail['name']}}</h5>
+				<p class="card-text">{{cocktail['drink_type']}}</p>
+				<ul>
+					{% for ingredient in cocktail['ingredients'] %}
+					<li>{{ingredient[0]}} {{ingredient[1]}} of <a
+							href="{{url_for('get_ingredient', ingredient_id=ingredient[2])}}">{{ingredient[3]}} </a>
+					</li>
+					{% endfor %}
+				</ul>
+				<p class="card-text">{{cocktail['directions']}}</p>
+				{% if user['_id'] == cocktail['author'] %}
+				<a href="{{ url_for('delete_recepie', recepie_id=cocktail['_id']) }}" class="btn btn-warning">Delete
+					recepie</a>
+				<a href="{{ url_for('edit_recepie', recepie_id=cocktail['_id']) }}" class="btn btn-warning">Edit
+					recepie</a>
+				{% endif %}
+			</div>
 		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		{% for comment in cocktail['comments'] %}
+		<div class="card" style="width: 30rem;">
+			<div class="card-body">
+				<h5 class="card-title">{{ comment['author'] }}</h5>
+				<p class="card-text">{{ comment['message'] }}</p>
+			</div>
+		</div>
+		{% endfor %}
+		{% if session['username'] %}
+		<form action="/add_comment">
+			<div class="form-group">
+				<label for="description">Comment</label>
+				<textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Add comment</button>
+		</form>
+
+		{% endif %}
 	</div>
 </div>
 
