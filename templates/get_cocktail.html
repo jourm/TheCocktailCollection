@@ -37,8 +37,13 @@
 				<h5 class="card-title">{{ comment['username'] }}</h5>
 				<p class="card-text">{{ comment['message'] }}</p>
                 {% if cocktail['author'] == session['user_id'] %}
-                    <a href="{{ url_for('delete_recepie', recepie_id=cocktail['_id']) }}" class="btn btn-danger">Delete
-					comment</a>
+                <form action="/delete_comment/{{ cocktail['_id'] }}" method="POST">
+			    <div class="form-group">
+                    <input type="hidden" class="form-control" id="username" name="username" value="{{ comment['username'] }}">
+				    <input type="hidden" class="form-control" id="message_d" name="message_d" value="{{ comment['message'] }}">
+			        </div>
+			        <button type="submit" class="btn btn-danger">delete comment</button>
+		        </form>
                 {% endif %}
 			</div>
 		</div>
