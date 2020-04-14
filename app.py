@@ -112,7 +112,7 @@ def edit_recepie(recepie_id):
             name = request.form['name']
             drink_type = request.form['type']
             ingredients = request.form.getlist('ingredients')
-            
+
             ingredient_list = []
             for i in range(0, len(ingredients), 3):
                 ingredient_list.append([ingredients[i], ingredients[i+1],
@@ -150,6 +150,17 @@ def delete_recepie(recepie_id):
         return redirect(url_for('home'))
     else:
         flash('You did not create this recepie!')
+
+
+@app.route('/add_comment/<recepie_id>', methods=['POST'])
+def add_comment(recepie_id):
+    if 'username' in session:
+        recepie = mongo.db.recepies.find_one({'_id': ObjectId(recepie_id)})
+        comment = {'username': session['username'],
+                   'message': request.form['message']}
+        recepie['comments'].append(comment)
+        mongo.db.recepies.update({'_id': ObjectId(recepie_id)}, recepie)
+    return redirect(url_for('get_recepie', recepie_id=recepie_id))
 
 
 @app.route('/user_home')

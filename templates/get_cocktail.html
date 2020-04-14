@@ -34,16 +34,16 @@
 		{% for comment in cocktail['comments'] %}
 		<div class="card" style="width: 30rem;">
 			<div class="card-body">
-				<h5 class="card-title">{{ comment['author'] }}</h5>
+				<h5 class="card-title">{{ comment['username'] }}</h5>
 				<p class="card-text">{{ comment['message'] }}</p>
 			</div>
 		</div>
 		{% endfor %}
 		{% if session['username'] %}
-		<form action="/add_comment">
+		<form action="/add_comment/{{ cocktail['_id'] }}" method="POST">
 			<div class="form-group">
-				<label for="description">Comment</label>
-				<textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+				<label for="message">Comment</label>
+				<textarea class="form-control" id="message" name="message" rows="4"></textarea>
 			</div>
 			<button type="submit" class="btn btn-primary">Add comment</button>
 		</form>
