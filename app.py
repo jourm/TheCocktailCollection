@@ -174,8 +174,6 @@ def delete_comment(recepie_id):
     return redirect(url_for('get_recepie', recepie_id=recepie_id))
 
 
-
-
 @app.route('/user_home')
 def user_home():
     if 'username' in session:
