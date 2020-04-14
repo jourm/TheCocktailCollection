@@ -9,66 +9,63 @@ Edit {{ cocktail[name] }} Recipe
 			<div class="form-group">
 				<label for="name">Name</label>
 				<input type="text" value="{{cocktail['name']}}" class="form-control" id="name" name="name" required>
-	                </div>
-				<div class="form-group">
-					<label for="type">Drink type</label>
-					<select value="" class="form-control" name="type" id="type">
-            <option value="Collins" >Collins</option>
-            <option value="Tiki" >Tiki</option>
-            <option value="Fizz" >Fizz</option>
-            <option value="Highball" >Highball</option>
-            <option value="Flip" >Flip</option>
-            </select>
+	        </div>
+			<div class="form-group">
+				<label for="type">Drink type</label>
+				<select value="" class="form-control" name="type" id="type">
+                    <option value="Collins" >Collins</option>
+                    <option value="Tiki" >Tiki</option>
+                    <option value="Fizz" >Fizz</option>
+                    <option value="Highball" >Highball</option>
+                    <option value="Flip" >Flip</option>
+                </select>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="amount">Amount</label>
+					<input type="number" class="form-control" id="amount" >
+		        </div>
+				<div class="form-group col-md-2">
+					<label for="unit">Unit</label>
+					<input type="text" class="form-control" id="unit" >
+		         </div>
+				<div class="form-group col-md-2">
+					<label for="ingredient">Ingredient</label>
+					<select  id="ingredient" class="form-control">
+                    {% for ingredient in ingredients %}
+                        <option value="{{ ingredient['_id'] }}"> {{ ingredient['ingredient'] }} </option>
+                    {% endfor %}
+				    </select>
 				</div>
-				<div class="form-row">
+				<button id="add-ingredient" type="button" class="btn btn-success">Add to recepie</button>
+			</div>
+			<div id="ingredient-list">	
+            	{% for ingredient in cocktail['ingredients'] %}
+				<div class="form-row" id="added_ingredient{{ ingredient[4] }}">
 					<div class="form-group col-md-2">
-						<label for="amount">Amount</label>
-						<input type="number" class="form-control" id="amount" >
-		            </div>
-						<div class="form-group col-md-2">
-							<label for="unit">Unit</label>
-							<input type="text" class="form-control" id="unit" >
-		            </div>
-							<div class="form-group col-md-2">
-								<label for="ingredient">Ingredient</label>
-								<select  id="ingredient" class="form-control">
-                            {% for ingredient in ingredients %}
-                                <option value="{{ ingredient['_id'] }}"> {{ ingredient['ingredient'] }} </option>
-                             {% endfor %}
-					    </select>
-							</div>
-							<button id="add-ingredient" type="button" class="btn btn-success">Add to recepie</button>
-						</div>
-						<div id="ingredient-list">
-							{% for ingredient in cocktail['ingredients'] %}
-							
-
-							<div class="form-row" id="added_ingredient{{ ingredient[4] }}">
-								<div class="form-group col-md-2">
-									<input type="number" class="form-control" value="{{ ingredient[0] }}" id="amount{{ ingredient[4] }}" name="ingredients">
-		                        </div>
-								<div class="form-group col-md-2">
-									<input type="text" class="form-control" value="{{ ingredient[1] }}" id="unit{{ ingredient[4] }}" name="ingredients">
-		                        </div>
-								<div class="form-group col-md-3">
-									<select  id="ingredient{{ ingredient[4] }}" class="form-control" name="ingredients">
-                                        <option value="{{ ingredient[2] }}">  {{ ingredient[3] }}  </option>
-                                    </select>
-								</div>
-                                <button type="button" class="delete btn btn-danger"  >Delete</button>
-							</div>
-								
-							{% endfor %}
-						</div>
-								<div class="form-group">
-									<label for="description">Description</label>
-									<textarea class="form-control" id="description" name="description" rows="3"> {{ cocktail['directions'] }}</textarea>
-								</div>
-								<div class="formgroup">
-									<label for="img-url">Image Url</label>
-									<input class="form-control" value="{{ cocktail['img-url'] }}" id="img-url" name="img-url">
-                </div>
-									<button type="submit" class="btn btn-primary">Submit</button>
+						<input type="number" class="form-control" value="{{ ingredient[0] }}" id="amount{{ ingredient[4] }}" name="ingredients">
+	                </div>
+					<div class="form-group col-md-2">
+						<input type="text" class="form-control" value="{{ ingredient[1] }}" id="unit{{ ingredient[4] }}" name="ingredients">
+	                </div>
+					<div class="form-group col-md-3">
+						<select  id="ingredient{{ ingredient[4] }}" class="form-control" name="ingredients">
+                             <option value="{{ ingredient[2] }}">  {{ ingredient[3] }}  </option>
+                        </select>
+					</div>
+					<button type="button" class="delete btn btn-danger"  >Delete</button>
+				</div>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea class="form-control" id="description" name="description" rows="3"> {{ cocktail['directions'] }}</textarea>
+			</div>
+			<div class="formgroup">
+				<label for="img-url">Image Url</label>
+				<input class="form-control" value="{{ cocktail['img-url'] }}" id="img-url" name="img-url">
+            </div>
+			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 </div>
