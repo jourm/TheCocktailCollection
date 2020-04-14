@@ -5,8 +5,8 @@
 
 {% block content %}
 <div class="row">
-	<div class="col-sm-12">
-		<div class="card" style="width: 30rem;">
+	<div class="col-sm-12 col-md-6">
+		<div class="card" >
 			<img src="{{cocktail['img-url'] }}" class="card-img-top" alt="image of cocktail">
 			<div class="card-body">
 				<h5 class="card-title">{{cocktail['name']}}</h5>
@@ -28,11 +28,11 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-sm-12">
+
+
+	<div class="col-sm-12 col-md-6">
 		{% for comment in cocktail['comments'] %}
-		<div class="card" style="width: 30rem;">
+		<div class="card" >
 			<div class="card-body">
 				<h5 class="card-title">{{ comment['username'] }}</h5>
 				<p class="card-text">{{ comment['message'] }}</p>
@@ -41,8 +41,8 @@
 			    <div class="form-group">
                     <input type="hidden" class="form-control" id="username" name="username" value="{{ comment['username'] }}">
 				    <input type="hidden" class="form-control" id="message_d" name="message_d" value="{{ comment['message'] }}">
-			        </div>
-			        <button type="submit" class="btn btn-danger">delete comment</button>
+			    </div>
+			    <button type="submit" class="btn btn-danger">delete comment</button>
 		        </form>
                 {% endif %}
 			</div>
