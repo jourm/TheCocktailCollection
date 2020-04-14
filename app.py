@@ -86,9 +86,10 @@ def get_recepie(recepie_id):
                                                          ObjectId(ingredient[2])})['ingredient'])
     if 'user_id' in session:
         user = mongo.db.users.find_one({'_id': ObjectId(session['user_id'])})
+        user['_id'] = str(user['_id'])
         return render_template('get_cocktail.html', cocktail=recepie,
                                user=user)
-    return render_template('get_cocktail.html', cocktail=recepie)
+    return render_template('get_cocktail.html', cocktail=recepie, user='None')
 
 
 @app.route('/edit_recepie/<recepie_id>', methods=['GET', 'POST'])
