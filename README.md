@@ -4,6 +4,8 @@
 [To wiew project deplyed on heroku](https://the-cocktail-collection.herokuapp.com/)
 </div>
 
+
+
 ## Business goals of the site:
 
 * At this point none existent. Affiliate Marketing could be added in the future.
@@ -76,4 +78,13 @@ This project uses bootstrap  for its grid system and premade classes.
 This project uses Pexels as a free source of images.
 #### [balsamiq Mockups](https://balsamiq.com/wireframes/)
 This project uses balsamiq mockups 3 for creating wireframes.
-#### []
+#### [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+This project uses the Flask web framework.
+#### [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
+This project uses the Jinja template engine.
+#### [MongoDB](https://www.mongodb.com/)
+This project uses a MongoDB based database hosted on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+#### [Heroku](https://www.heroku.com/)
+This project is hosted on Heroku.
+
+Testing 
