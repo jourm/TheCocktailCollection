@@ -9,7 +9,7 @@ if path.exists("env.py"):
 
 MONGO_URI = os.environ.get("MONGO_URI")
 DBS_NAME = "TheCocktailCollection"
-COLLECTION_NAME = "ingredients"
+COLLECTION_NAME = "ingredients_new"
 
 
 def getnewingredient(id):
@@ -22,17 +22,18 @@ def getnewingredient(id):
         if value is None:
             return False
         else:
-            return{"ingredient": value[0]['strIngredient'],
+            return{"ingredient": value[0]['strIngredient'].lower(),
                    "description": value[0]['strDescription'],
                    "type": value[0]['strType'],
                    "alcohol": value[0]['strAlcohol'],
-                   "abv": value[0]['strABV']}
+                   "abv": value[0]['strABV'],
+                   "img-url": "https://www.thecocktaildb.com/images/ingredients/" + value[0]['strIngredient'] + "-Medium.png"}
 
 
 def mongo_connect(url):
     try:
         conn = pymongo.MongoClient(url)
-        print("Mongo is COnnected")
+        print("Mongo is Connected")
         return conn
     except pymongo.errors.ConnectionFailure as e:
         print("Could Not connect to MongoDB: %s") % e
@@ -43,6 +44,7 @@ conn = mongo_connect(MONGO_URI)
 coll = conn[DBS_NAME][COLLECTION_NAME]
 coll_intype = conn[DBS_NAME]['ingType']
 
+
 categories = []
 for i in range(1, 1000):
     
@@ -52,11 +54,9 @@ for i in range(1, 1000):
     else:
         if new_ingredient['type'] not in categories:
             categories.append(new_ingredient['type'])
-            
-            
-#       coll.insert_one(new_ingredient)
-print(categories)
+        coll.insert_one(new_ingredient)
+#print(categories)
 
 
-for i in categories:
-    coll_intype.insert_one({'name': i})
+#for i in categories:
+#    coll_intype.insert_one({'name': i})
