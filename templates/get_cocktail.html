@@ -10,8 +10,8 @@
 			<img src="{{cocktail['img-url'] }}" class="card-img-top" alt="image of cocktail">
 			<div class="card-body">
 				<h5 class="card-title">{{cocktail['name']}}</h5>
-				<p class="card-text">{{cocktail['drink_type']}}</p>
-				<ul>
+				<p class="card-text">Glass: {{cocktail['drink_type']}}</p>
+                Ingredients:
 					{% for ingredient in cocktail['ingredients'] %}
 					<li>{{ingredient[0]}} {{ingredient[1]}} of <a
 							href="{{url_for('get_ingredient', ingredient_id=ingredient[2])}}">{{ingredient[3]}} </a>

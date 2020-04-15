@@ -63,6 +63,7 @@ For logged in users this page also features a comment section where comments can
 * Collect Recipe feature, where users can create collections and fill them with recepies they like or want to try.
 * Print menu, where users can print thier collection into a menu for a party.
 * Print bar manual, where users can print a Bar manual to go along with the menu.
+* Tags, add tags that users can tag their recipes with to ease
 
 ## Technologies used
 This project uses HTML, CSS, JavaScript and Python programming languages.
