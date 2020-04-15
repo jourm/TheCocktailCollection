@@ -8,26 +8,32 @@ Edit {{ cocktail[name] }} Recipe
 		<form method="POST" action="/edit_recepie/{{ cocktail['_id'] }}">
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" value="{{cocktail['name']}}" class="form-control" id="name" name="name" required>
+				<input type="text" value="{{cocktail['name']}}" class="form-control" id="name" name="name" maxlength="100" required>
 	        </div>
 			<div class="form-group">
-				<label for="type">Drink type</label>
+				<label for="type">Glass</label>
 				<select value="" class="form-control" name="type" id="type">
                     <option value="Collins" >Collins</option>
                     <option value="Tiki" >Tiki</option>
                     <option value="Fizz" >Fizz</option>
                     <option value="Highball" >Highball</option>
                     <option value="Flip" >Flip</option>
+                    <option value="Rocks" >Rocks</option>
+                    <option value="Coupe" >Coupe</option>
+                    <option value="Nick and Nora" >Nick and Nora</option>
+                    <option value="Martini" >Martini</option>
+                    <option value="Chapange floute" >Chapange floute</option>
+                    <option value="Wine Glass" >Wine Glass</option>
                 </select>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="amount">Amount</label>
-					<input type="number" class="form-control" id="amount" >
+					<input type="number" class="form-control" id="amount">
 		        </div>
 				<div class="form-group col-md-2">
 					<label for="unit">Unit</label>
-					<input type="text" class="form-control" id="unit" >
+					<input type="text" class="form-control" id="unit" maxlength="20" >
 		         </div>
 				<div class="form-group col-md-2">
 					<label for="ingredient">Ingredient</label>
@@ -59,11 +65,11 @@ Edit {{ cocktail[name] }} Recipe
 			</div>
 			<div class="form-group">
 				<label for="description">Description</label>
-				<textarea class="form-control" id="description" name="description" rows="3"> {{ cocktail['directions'] }}</textarea>
+				<textarea class="form-control" id="description" name="description" rows="4" maxlength="500" required> {{ cocktail['directions'] }}</textarea>
 			</div>
 			<div class="formgroup">
 				<label for="img-url">Image Url</label>
-				<input class="form-control" value="{{ cocktail['img-url'] }}" id="img-url" name="img-url">
+				<input class="form-control" value="{{ cocktail['img-url'] }}" id="img-url" name="img-url" maxlength="500" required>
             </div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
