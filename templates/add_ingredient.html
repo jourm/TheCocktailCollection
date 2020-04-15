@@ -10,11 +10,11 @@ Add Ingredient
 		<form method="POST" action="/add_ingredient">
 			<div class="form-group">
 				<label for="name">Ingredient</label>
-				<input type="text" class="form-control" id="name" name="ingredient" required>
+				<input type="text" class="form-control" id="name" name="ingredient" maxlength="30" required>
 	        </div>
 			<div class="form-group">
 				<label for="description">Description</label>
-				<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+				<textarea class="form-control" id="description" name="description" maxlength="500" rows="3"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="type">ingredient type</label>
@@ -30,7 +30,7 @@ Add Ingredient
             </div>
             <div class="form-group">
 				<label for="amount">Alcohol content</label>
-				<input type="number" class="form-control" id="abv" name="abv">
+				<input maxlength="4" type="number" class="form-control" id="abv" name="abv">
 		    </div>	
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
