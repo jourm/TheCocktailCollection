@@ -8,6 +8,7 @@
 	<title>{% block title %} {% endblock %}</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
 </head>
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,7 +19,7 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 			<a class="navbar-brand" href="{{ url_for('home') }}">The Cocktail Collection</a>
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active">
+				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('home') }}">Home</a>
 				</li>
                 {% if 'username' in session %}
@@ -28,13 +29,22 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{url_for('add_ingredient')}}">Add Ingredient</a>
 				</li>
-                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="">You are signed in as {{ session['username'] }}</a>
+				</li>
+                <li class="nav-item">
+					<a class="nav-link" href="{{url_for('logout')}}">Sign Out</a>
+				</li>
+                {% else %}
                 <li class="nav-item">
 					<a class="nav-link" href="{{url_for('user_home')}}">Sign in</a>
 				</li>
                  <li class="nav-item">
 					<a class="nav-link" href="{{url_for('register')}}">Sign up</a>
 				</li>
+                {% endif %}
+                
+
 			</ul>
 			<form class="form-inline my-2 my-lg-0" action="/search" method="POST">
 				<input  name="name" id ="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

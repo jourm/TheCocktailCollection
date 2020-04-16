@@ -8,6 +8,9 @@ from os import path
 if path.exists("env.py"):
     import env
 
+# This file houses the code used to connect to Mongodb and create a 
+# searcheable index based on the name key in the recepies collection.
+
 MONGO_URI = os.environ.get("MONGO_URI")
 DBS_NAME = "TheCocktailCollection"
 

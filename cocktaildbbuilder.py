@@ -24,6 +24,13 @@ def mongo_connect(url):
 conn = mongo_connect(MONGO_URI)
 coll = conn[DBS_NAME]
 
+# Function that calls api based on cocktail id and if a response is recived
+# formats a touple in the correct fromat to be added to the recepies database.
+# Input: coktail id (11000-20000)
+# Output: A touple with the correct format to be added to the recepies
+# collection.
+# API: https://www.thecocktaildb.com/
+
 
 def getnewdrink(id):
     response = requests.get(
@@ -69,6 +76,3 @@ for i in range(11001, 20000):
         print(i)
     except:
         continue
-
-
-

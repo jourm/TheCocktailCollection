@@ -36,8 +36,8 @@ def search():
     if ingredient.count() == 1:
         return render_template('get_ingredient.html', ingredients=ingredient)
     else: 
-        return render_template('no_result.html')                 
-    
+        return render_template('no_result.html')
+
 
 @app.route('/add_cocktail', methods=['GET', 'POST'])
 def add_cocktail():
@@ -116,8 +116,9 @@ def edit_recepie(recepie_id):
         if request.method == 'GET':
             counter = 0
             for ingredient in recepie['ingredients']:
-                ingredient.append(mongo.db.ingredients_new.find_one({"_id":
-                                                                 ObjectId(ingredient[2])})['ingredient'])
+                ingredient.append(mongo.db.ingredients_new.find_one
+                                  ({"_id":
+                                    ObjectId(ingredient[2])})['ingredient'])
                 ingredient.append(counter)
                 counter += 1
 
@@ -194,9 +195,8 @@ def delete_comment(recepie_id):
 @app.route('/user_home')
 def user_home():
     if 'username' in session:
-        flash('you are logged in as' + session['username'])
-        return 'you are logged in as' + session['username']
-
+        
+        return redirect(url_for('home'))
     return render_template('login.html')
 
 
@@ -236,6 +236,11 @@ def register():
 
         return 'That Username is already taken'
     return render_template
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
