@@ -22,6 +22,11 @@ def home():
 
     return render_template('home.html', recepies=recepies)
 
+@app.route('/search', methods=['POST'])
+def search():
+    recepies = mongo.db.recepies.find({"name":  request.form['name']})
+    if recepies:
+        return render_template('home.html', recepies=recepies)
 
 @app.route('/add_cocktail', methods=['GET', 'POST'])
 def add_cocktail():
