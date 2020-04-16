@@ -10,7 +10,7 @@ if path.exists("env.py"):
 MONGO_URI = os.environ.get("MONGO_URI")
 
 app = Flask(__name__)
-
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['MONGO_DBNAME'] = 'TheCocktailCollection'
 app.config['MONGO_URI'] = MONGO_URI
 mongo = PyMongo(app)
@@ -18,17 +18,16 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    recepies = mongo.db.recepies.find()
-
+    recepies = mongo.db.recepies.find().batch_size(25)
     return render_template('home.html', recepies=recepies)
 
 
 @app.route('/search', methods=['POST'])
 def search():
-    recepies = mongo.db.recepies.find({"name":  request.form['name']})
+    recepies = mongo.db.recepies.find({"$text": {"$search":
+                                       request.form['name']}})
     print(recepies)
     if recepies.count() >= 1:
-        
         return render_template('home.html', recepies=recepies)
 
     ingredient = mongo.db.ingredients_new.find({'ingredient':

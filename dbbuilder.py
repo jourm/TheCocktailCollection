@@ -27,7 +27,8 @@ def getnewingredient(id):
                    "type": value[0]['strType'],
                    "alcohol": value[0]['strAlcohol'],
                    "abv": value[0]['strABV'],
-                   "img-url": "https://www.thecocktaildb.com/images/ingredients/" + value[0]['strIngredient'] + "-Medium.png"}
+                   "img-url": "https://www.thecocktaildb.com/images/ingredients/" +
+                   value[0]['strIngredient'] + "-Medium.png"}
 
 
 def mongo_connect(url):
@@ -47,7 +48,6 @@ coll_intype = conn[DBS_NAME]['ingType']
 
 categories = []
 for i in range(1, 1000):
-    
     new_ingredient = getnewingredient(i)
     if new_ingredient is False:
         continue
@@ -55,8 +55,8 @@ for i in range(1, 1000):
         if new_ingredient['type'] not in categories:
             categories.append(new_ingredient['type'])
         coll.insert_one(new_ingredient)
-#print(categories)
+# print(categories)
 
 
-#for i in categories:
+# for i in categories:
 #    coll_intype.insert_one({'name': i})

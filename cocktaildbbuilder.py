@@ -39,15 +39,16 @@ def getnewdrink(id):
             for i in range(1, 15):
                 if drink[0]['strIngredient' + str(i)]:
                     if drink[0]['strMeasure' + str(i)]:
-                        a, b, c = re.split(
-                            r"([a-z])", drink[0]['strMeasure' + str(i)], 1, re.I)
+                        a, b, c = re.split(r"([a-z])",
+                                           drink[0]['strMeasure' + str(i)], 1, re.I)
                         new_ingredient = [a]
                         new_ingredient.append(b+c)
                     else:
                         new_ingredient = ["", ""]
 
                     ing = coll['ingredients_new'].find_one(
-                        {'ingredient': drink[0]['strIngredient' + str(i)].lower()})
+                        {'ingredient': drink[0]['strIngredient' + str(i)]
+                         .lower()})
                     new_ingredient.append(str(ing['_id']))
                     ingredient_list.append(new_ingredient)
 
