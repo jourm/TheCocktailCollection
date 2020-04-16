@@ -22,11 +22,23 @@ def home():
 
     return render_template('home.html', recepies=recepies)
 
+
 @app.route('/search', methods=['POST'])
 def search():
     recepies = mongo.db.recepies.find({"name":  request.form['name']})
-    if recepies:
+    print(recepies)
+    if recepies.count() >= 1:
+        
         return render_template('home.html', recepies=recepies)
+
+    ingredient = mongo.db.ingredients_new.find({'ingredient':
+                                                request.form['name']})
+    print(ingredient.count())
+    if ingredient.count() == 1:
+        return render_template('get_ingredient.html', ingredients=ingredient)
+    else: 
+        return render_template('no_result.html')                 
+    
 
 @app.route('/add_cocktail', methods=['GET', 'POST'])
 def add_cocktail():
@@ -79,7 +91,7 @@ def add_ingredient():
 def get_ingredient(ingredient_id):
     ingredient = mongo.db.ingredients_new.find_one(
         {"_id": ObjectId(ingredient_id)})
-    return render_template('get_ingredient.html', ingredient=ingredient)
+    return render_template('get_ingredient.html', ingredients=ingredient)
 
 
 @app.route('/get_recepie/<recepie_id>')
@@ -87,8 +99,9 @@ def get_recepie(recepie_id):
     recepie = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
     for ingredient in recepie['ingredients']:
 
-        ingredient.append(mongo.db.ingredients_new.find_one({"_id":
-                                                         ObjectId(ingredient[2])})['ingredient'])
+        ingredient.append(
+            mongo.db.ingredients_new.find_one({"_id":
+                                               ObjectId(ingredient[2])})['ingredient'])
     if 'user_id' in session:
         user = mongo.db.users.find_one({'_id': ObjectId(session['user_id'])})
         user['_id'] = str(user['_id'])

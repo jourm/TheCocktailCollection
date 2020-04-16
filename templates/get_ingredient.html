@@ -5,16 +5,18 @@ Ingredient Info
 
 {% block content %}
 <div class="row">
-	<div class="card" style="width: 30rem;">
+{% for ingredient in ingredients %}
+	<div class="card col-sm-12 col-md-6 col-lg-4" >
 		<img src="{{ ingredient['img-url'] }}" class="card-img-top" alt="image of Ingredient">
 		<div class="card-body">
 			<h5 class="card-title">{{ingredient['ingredient']}}</h5>
-			<p class="card-text">Description:<br>{{ingredient['descriprion']}}</p>
+			<p class="card-text">Description:<br>{{ingredient['description']}}</p>
             <p class="card-text">Type: {{ingredient['type']}}</p>
             <p class="card-text">Alcohol: {{ingredient['alcohol']}}</p>
             <p class="card-text">Alcohol content: {{ingredient['abv']}}</p>
 		</div>
 	</div>
+{% endfor %}    
 </div>
 
 
