@@ -27,7 +27,7 @@ def home():
 def add_cocktail():
     if request.method == 'GET':
         return render_template('add_cocktail.html',
-                               ingredients=mongo.db.ingredients.find())
+                               ingredients=mongo.db.ingredients_new.find())
 
     if request.method == 'POST':
         name = request.form['name']
@@ -56,7 +56,7 @@ def add_cocktail():
 
         mongo.db.recepies.insert_one(new_doc)
         return render_template('add_cocktail.html',
-                               ingredients=mongo.db.ingredients.find())
+                               ingredients=mongo.db.ingredients_new.find())
 
 
 @app.route('/add_ingredient', methods=['GET', 'POST'])
@@ -65,14 +65,14 @@ def add_ingredient():
         return render_template('add_ingredient.html',
                                ingType=mongo.db.ingType.find())
     if request.method == 'POST':
-        mongo.db.ingredients.insert_one(request.form.to_dict())
+        mongo.db.ingredients_new.insert_one(request.form.to_dict())
         return render_template('add_ingredient.html',
                                ingType=mongo.db.ingType.find())
 
 
 @app.route('/get_ingredient/<ingredient_id>')
 def get_ingredient(ingredient_id):
-    ingredient = mongo.db.ingredients.find_one(
+    ingredient = mongo.db.ingredients_new.find_one(
         {"_id": ObjectId(ingredient_id)})
     return render_template('get_ingredient.html', ingredient=ingredient)
 
@@ -82,7 +82,7 @@ def get_recepie(recepie_id):
     recepie = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
     for ingredient in recepie['ingredients']:
 
-        ingredient.append(mongo.db.ingredients.find_one({"_id":
+        ingredient.append(mongo.db.ingredients_new.find_one({"_id":
                                                          ObjectId(ingredient[2])})['ingredient'])
     if 'user_id' in session:
         user = mongo.db.users.find_one({'_id': ObjectId(session['user_id'])})
@@ -99,14 +99,14 @@ def edit_recepie(recepie_id):
         if request.method == 'GET':
             counter = 0
             for ingredient in recepie['ingredients']:
-                ingredient.append(mongo.db.ingredients.find_one({"_id":
+                ingredient.append(mongo.db.ingredients_new.find_one({"_id":
                                                                  ObjectId(ingredient[2])})['ingredient'])
                 ingredient.append(counter)
                 counter += 1
 
             return render_template('edit_recepie.html', cocktail=recepie,
                                    counter=counter,
-                                   ingredients=mongo.db.ingredients.find())
+                                   ingredients=mongo.db.ingredients_new.find())
 
         if request.method == 'POST':
             name = request.form['name']

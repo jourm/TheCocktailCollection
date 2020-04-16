@@ -64,7 +64,7 @@ def getnewdrink(id):
 for i in range(11001, 20000):
     try:
         drink = getnewdrink(i)
-        coll[recepies].insert_one(drink)
+        coll['recepies'].insert_one(drink)
         print(i)
     except:
         continue
