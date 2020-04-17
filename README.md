@@ -23,23 +23,24 @@ There are three main categories of Visitors
 * Enthusiast visitor, a visitor with an intrest in and experience of making cocktails.
 * Professional visitor, a bartender or other such personel workning in the industry. 
  
-As a casual visitor I want to find a recepie to try and make.
-As a casual visitor I want to find a few recepies to dazzle my guests with in a upcoming party.
-As a Enthusiast visitor I want to post my recepie and get critique or tips from other users.
-As a Enthusiast visitor I want to find new recepie to try.
-As a Enthusiast visitor I want to find new recepies to try and make my own version of.
-As a Enthusiast visitor I want to post my recepies as a way of saving them for later use.
-As a Professional user I want to find inspiration for a new cocktail to put on my menu.
-As a Professional user I want to post my new recepie to get some qritique before putting it on my menu.
+As a casual visitor I want to find a recepie so that I can try and make it.
+As a casual visitor I want to find a few recepies so that I can dazzle my guests with them in a upcoming party.
+As a Enthusiast visitor I want to post my recepie so that I can get critique or tips from other users.
+As a Enthusiast visitor I want to find new recepie so that I can try it.
+As a Enthusiast visitor I want to find new recepies so that I can try and make my own version of.
+As a Enthusiast visitor I want to post my recepies so that I can save them for later use.
+As a Professional user I want to find inspiration for a new cocktail so that I can put it on my menu.
+As a Professional user I want to post my new recepie so that I can get some qritique before putting it on my menu.
 
 ## Features 
 #### Ingredients
-* A populated database of over 400 ingredients that are used for creating new recipes. This collection of ingredients was created from calling https://www.thecocktaildb.com/ Api.
+* A Mongodb collection of over 400 ingredients that are used for creating new recipes. This collection of ingredients was created from https://www.thecocktaildb.com/ Api.
 * Add ingredient page, where users can add their own ingredients to the database. The link to this hidden from users that are not logged in.
 * Ingredient page, where an image and some basic information about the ingredient can be accessed.
 #### Recipes
-* A database for recepies that currently only has a few recepies on it.
-* Add recipe page, where new recipes can be from the ingredients in the database. The link to this hidden from users that are not logged in.
+* A Mongodb collection of over 400 recipes with a text based index making the collection searcheable. This collection of recipes was created from https://www.thecocktaildb.com/ Api.
+* Add recipe page, where new recipes can be created from the ingredients in the database. The link to this hidden from users that are not logged in.
+* Edit recepie page, very similar to add recipe page, but filled out with the recipe to edit and only avliable to the author of a recipe from the recipe page.
 * Display recipe page, where the recipe is displayed with an image, the glass to use, a list of ingredients with links to the ingreient page, and directions on how to make the cocktail.
 For logged in users this page also features a comment section where comments can be posted, and for the author of the recipe there are buttons to delete comments and delete or edit the recipe.
 #### User Registration and login

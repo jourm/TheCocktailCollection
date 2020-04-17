@@ -4,6 +4,13 @@ The Cocktail Collection
 {% endblock %}
 {% block content %}
 <div class="row">
+    <div class="jumbotron jumbotron-fluid col-sm-12">
+        <div class="container">
+            <h1 class="display-4">The Cocktail Collection</h1>
+            <p class="lead">Find new cocktail recipes and create your own!</p>
+            <a href="{{ url_for('register') }}"> Click here to sign up!</a>
+        </div>
+    </div>
 	{% for recepie in recepies %}
 	<div class="col-sm-12 col-md-6 col-lg-4">
 		<div class="card" >

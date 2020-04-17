@@ -4,12 +4,12 @@ Ingredient Info
 {% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row justify-content-center">
 {% for ingredient in ingredients %}
-	<div class="card col-sm-12 col-md-6 col-lg-4" >
+	<div class="card col-sm-12 col-md-8" >
 		<img src="{{ ingredient['img-url'] }}" class="card-img-top" alt="image of Ingredient">
 		<div class="card-body">
-			<h5 class="card-title">{{ingredient['ingredient']}}</h5>
+			<h5 class="card-title">{{ingredient['ingredient'] | capitalize}}</h5>
 			<p class="card-text">Description:<br>{{ingredient['description']}}</p>
             <p class="card-text">Type: {{ingredient['type']}}</p>
             <p class="card-text">Alcohol: {{ingredient['alcohol']}}</p>

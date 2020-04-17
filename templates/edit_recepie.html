@@ -4,7 +4,7 @@ Edit {{ cocktail[name] }} Recipe
 {% endblock %}
 {% block content %}
 <div class="row">
-	<div class="col-sm-12">
+	<div class="card col-sm-12 col-md-8">
 		<form method="POST" action="/edit_recepie/{{ cocktail['_id'] }}">
 			<div class="form-group">
 				<label for="name">Name</label>
@@ -45,7 +45,7 @@ Edit {{ cocktail[name] }} Recipe
                     {% endfor %}
 				    </select>
 				</div>
-				<button id="add-ingredient" type="button" class="btn btn-success">Add to recepie</button>
+				<button id="add-ingredient" type="button" class="add-btn btn btn-success">Add to recepie</button>
 			</div>
 			<div id="ingredient-list">	
             	{% for ingredient in cocktail['ingredients'] %}

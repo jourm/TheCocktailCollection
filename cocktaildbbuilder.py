@@ -74,5 +74,5 @@ for i in range(11001, 20000):
         drink = getnewdrink(i)
         coll['recepies'].insert_one(drink)
         print(i)
-    except:
+    except Exception:
         continue

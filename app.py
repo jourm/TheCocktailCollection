@@ -1,6 +1,6 @@
 import bcrypt
 from flask import Flask, render_template, redirect, request, url_for, session, flash
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import os
 from os import path
@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    recepies = mongo.db.recepies.find().batch_size(25)
+    recepies = mongo.db.recepies.find().sort('_id', pymongo.ASCENDING).limit(25)
     return render_template('home.html', recepies=recepies)
 
 
@@ -26,13 +26,11 @@ def home():
 def search():
     recepies = mongo.db.recepies.find({"$text": {"$search":
                                        request.form['name']}})
-    print(recepies)
+    
     if recepies.count() >= 1:
         return render_template('home.html', recepies=recepies)
-
     ingredient = mongo.db.ingredients_new.find({'ingredient':
                                                 request.form['name']})
-    print(ingredient.count())
     if ingredient.count() == 1:
         return render_template('get_ingredient.html', ingredients=ingredient)
     else: 
@@ -45,7 +43,7 @@ def add_cocktail():
         return render_template('add_cocktail.html',
                                ingredients=mongo.db.ingredients_new.find())
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         name = request.form['name']
         drink_type = request.form['type']
         ingredients = request.form.getlist('ingredients')
@@ -88,7 +86,7 @@ def add_ingredient():
 
 @app.route('/get_ingredient/<ingredient_id>')
 def get_ingredient(ingredient_id):
-    ingredient = mongo.db.ingredients_new.find_one(
+    ingredient = mongo.db.ingredients_new.find(
         {"_id": ObjectId(ingredient_id)})
     return render_template('get_ingredient.html', ingredients=ingredient)
 
@@ -222,7 +220,7 @@ def register():
         return render_template('register.html')
     if request.method == 'POST':
         users = mongo.db.users
-        existing_user = users.find_one({'email': request.form['email']})
+        existing_user = users.find_one({'username': request.form['username']})
 
         if existing_user is None:
             hashpassword = bcrypt.hashpw(request.form['password']
@@ -235,7 +233,7 @@ def register():
             return redirect(url_for('user_home'))
 
         return 'That Username is already taken'
-    return render_template
+    return render_template('register.html')
 
 @app.route('/logout')
 def logout():
