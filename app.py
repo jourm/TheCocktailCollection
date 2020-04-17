@@ -192,10 +192,10 @@ def delete_comment(recepie_id):
 
 @app.route('/user_home')
 def user_home():
-    if 'username' in session:
-        
+    if 'username' in session:       
         return redirect(url_for('home'))
-    return render_template('login.html')
+    else:
+        return render_template('login.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -217,7 +217,10 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'GET':
-        return render_template('register.html')
+        if 'username' in session:       
+            return redirect(url_for('home'))
+        else:
+            return render_template('register.html')
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'username': request.form['username']})
