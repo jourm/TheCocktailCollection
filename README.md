@@ -32,6 +32,10 @@ As a Enthusiast visitor I want to post my recepies so that I can save them for l
 As a Professional user I want to find inspiration for a new cocktail so that I can put it on my menu.
 As a Professional user I want to post my new recepie so that I can get some qritique before putting it on my menu.
 
+## Wireframes
+Thsese wireframes were created as a base for the project and the actual views may vary some.
+[]()
+
 ## Features 
 #### Ingredients
 * A Mongodb collection of over 400 ingredients that are used for creating new recipes. This collection of ingredients was created from https://www.thecocktaildb.com/ Api.

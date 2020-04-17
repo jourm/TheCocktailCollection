@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    recepies = mongo.db.recepies.find().sort('_id', pymongo.ASCENDING).limit(25)
+    recepies = mongo.db.recepies.find().sort('_id', pymongo.ASCENDING).limit(30)
     return render_template('home.html', recepies=recepies)
 
 
@@ -217,7 +217,7 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'GET':
-        if 'username' in session:       
+        if 'username' in session:
             return redirect(url_for('home'))
         else:
             return render_template('register.html')
