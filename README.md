@@ -34,7 +34,13 @@ As a Professional user I want to post my new recepie so that I can get some qrit
 
 ## Wireframes
 Thsese wireframes were created as a base for the project and the actual views may vary some.
-[]()
+[Landing Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/landing_page.PNG)
+[Recipe Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/recipe_page.PNG)
+[Ingredient Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/ingredient_page.PNG)
+[Create/Edit Recepie Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/create_edit_recepie.PNG)
+[Create Ingredient Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/create_new_ingredient.PNG)
+[Register Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/register.PNG)
+[Sign in Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/singin.PNG)
 
 ## Features 
 #### Ingredients
