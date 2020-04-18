@@ -55,7 +55,7 @@ def create_new_recipe():
         url = request.form['img-url']
         if 'user_id' in session:
             new_doc = {'name': name,
-                       'glass_type': glass_typ,
+                       'glass_type': glass_type,
                        'ingredients': ingredient_list,
                        'directions': directions,
                        'img-url': url,
