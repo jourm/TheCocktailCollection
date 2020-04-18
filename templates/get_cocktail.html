@@ -12,6 +12,7 @@
 				<h5 class="card-title">{{cocktail['name']}}</h5>
 				<p class="card-text">Glass: {{cocktail['glass_type']}}</p>
                 Ingredients:
+                <ul>
 					{% for ingredient in cocktail['ingredients'] %}
 					<li>{{ingredient[0]}} {{ingredient[1]}} of <a
 							href="{{url_for('get_ingredient', ingredient_id=ingredient[2])}}">{{ingredient[3] | capitalize}} </a>
@@ -28,9 +29,9 @@
 			</div>
 		</div>
 	</div>
-	{% for comment in cocktail['comments'] %}
-	<div class="card col-sm-12 col-md-8 col-lg-6" >
+    <div class="card col-sm-12 col-md-8 col-lg-6" >
 		<div class="card-body">
+	{% for comment in cocktail['comments'] %}
 			<h5 class="card-title">{{ comment['username'] }}</h5>
 			<p class="card-text">{{ comment['message'] }}</p>
             {% if cocktail['author'] == session['user_id'] %}
@@ -39,25 +40,23 @@
                     <input type="hidden" class="form-control" id="username" name="username" value="{{ comment['username'] }}">
 				    <input type="hidden" class="form-control" id="message_d" name="message_d" value="{{ comment['message'] }}">
 			    </div>
-			    <button type="submit" class="btn btn-danger">delete comment</button>
+			    <button type="submit" class="btn btn-danger">Delete comment</button>
 		    </form>
-         {% endif %}
-		</div>
-	</div>
+         {% endif %}	
+	
 	{% endfor %}
 	{% if session['username'] %}
-    <div class="card col-sm-12 col-md-8 col-lg-6">
-		<form action="/add_comment/{{ cocktail['_id'] }}" method="POST">
-			<div class="form-group">
-				<label for="message">Comment</label>
-				<textarea class="form-control" id="message" name="message" rows="4" maxlength="500" required></textarea>
-                <small>Max 500 characters</small>
-			</div>
-			<button type="submit" class="btn btn-primary">Add comment</button>
-		</form>
+		    <form action="/add_comment/{{ cocktail['_id'] }}" method="POST">
+			    <div class="form-group">
+				    <label for="message">Comment</label>
+				    <textarea class="form-control" id="message" name="message" rows="4" maxlength="500" required></textarea>
+                    <small>Max 500 characters</small>
+			    </div>
+			    <button type="submit" class="btn btn-primary">Add comment</button>
+		    </form>
+        </div>
     </div>
 </div>
-
 		{% endif %}
 	
 

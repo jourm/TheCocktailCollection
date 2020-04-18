@@ -43,6 +43,9 @@ Thsese wireframes were created as a base for the project and the actual views ma
 [Sign in Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/singin.PNG)
 
 ## Features 
+#### Navbar
+* Avliable on all pages 
+
 #### Ingredients
 * A Mongodb collection of over 400 ingredients that are used for creating new recipes. This collection of ingredients was created from https://www.thecocktaildb.com/ Api.
 * Add ingredient page, where users can add their own ingredients to the database. The link to this hidden from users that are not logged in.
@@ -59,7 +62,7 @@ For logged in users this page also features a comment section where comments can
 
 
 ## Features to implement
-* Advanced search, where users can seacrh for recepies based on ingredients or style of cocktail.
+* Advanced search, where users can seacrh for recepies based on ingredients or style of cocktail. This advanced search would have a feature where users can input what they have at home and get recipes containing those ingredients.
 * Direct messaging, were users can send each other direct messages with tips or suggestions.
 * User home page, Where users can uppload a profile picture and write about thier experience in the art of mixology.
 * Most popular carousel on the homepage where the most visited recepies over the last week can be displayed.
