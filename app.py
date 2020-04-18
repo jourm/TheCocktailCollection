@@ -19,7 +19,7 @@ mongo = PyMongo(app)
 @app.route('/')
 def home():
     recipes = mongo.db.recepies.find().sort('_id', pymongo.ASCENDING).limit(30)
-    return render_template('home.html', recepies=recipes)
+    return render_template('home.html', recipes=recipes)
 
 
 @app.route('/search', methods=['POST'])
@@ -28,7 +28,7 @@ def search():
                                       request.form['name']}})
     
     if recipes.count() >= 1:
-        return render_template('home.html', recepies=recipes)
+        return render_template('home.html', recipes=recipes)
     ingredient = mongo.db.ingredients_new.find({'ingredient':
                                                 request.form['name']})
     if ingredient.count() == 1:
@@ -91,9 +91,9 @@ def get_ingredient(ingredient_id):
     return render_template('get_ingredient.html', ingredients=ingredient)
 
 
-@app.route('/get_recepie/<recepie_id>')
-def get_recepie(recepie_id):
-    recipe = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
+@app.route('/get_recipe/<recipe_id>')
+def get_recipe(recipe_id):
+    recipe = mongo.db.recepies.find_one({"_id": ObjectId(recipe_id)})
     for ingredient in recipe['ingredients']:
         ingredient.append(
             mongo.db.ingredients_new.find_one({"_id":
