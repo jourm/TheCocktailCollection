@@ -106,20 +106,20 @@ def get_recipe(recipe_id):
     return render_template('get_recipe.html', recipe=recipe, user=False)
 
 
-@app.route('/edit_recepie/<recepie_id>', methods=['GET', 'POST'])
-def edit_recepie(recepie_id):
-    recepie = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
-    if recepie['author'] == session['user_id']:
+@app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
+def edit_recipe(recipe_id):
+    recipe = mongo.db.recepies.find_one({"_id": ObjectId(recipe_id)})
+    if recipe['author'] == session['user_id']:
         if request.method == 'GET':
             counter = 0
-            for ingredient in recepie['ingredients']:
+            for ingredient in recipe['ingredients']:
                 ingredient.append(mongo.db.ingredients_new.find_one
                                   ({"_id":
                                     ObjectId(ingredient[2])})['ingredient'])
                 ingredient.append(counter)
                 counter += 1
 
-            return render_template('edit_recepie.html', cocktail=recepie,
+            return render_template('edit_recipe.html', recipe=recipe,
                                    counter=counter,
                                    ingredients=mongo.db.ingredients_new.find())
 
@@ -149,22 +149,22 @@ def edit_recepie(recepie_id):
                            'img-url': url,
                            'author': ''}
 
-            mongo.db.recepies.update({'_id': ObjectId(recepie_id)}, new_doc)
-            return redirect(url_for('get_recepie', recepie_id=recepie_id))
+            mongo.db.recepies.update({'_id': ObjectId(recipe_id)}, new_doc)
+            return redirect(url_for('get_recipe', recipe_id=recipe_id))
     else:
-        flash('Not your recepie to edit')
+        flash('Not your recipe to edit')
         pass
 
 
-@app.route('/delete_recepie/<recepie_id>')
-def delete_recepie(recepie_id):
-    cocktail = mongo.db.recepies.find_one({'_id': ObjectId(recepie_id)})
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    cocktail = mongo.db.recepies.find_one({'_id': ObjectId(recipe_id)})
     if cocktail['author'] == session['user_id']:
-        mongo.db.recepies.remove({'_id': ObjectId(recepie_id)})
-        flash('Recepie Deleted')
+        mongo.db.recepies.remove({'_id': ObjectId(recipe_id)})
+        flash('recipe Deleted')
         return redirect(url_for('home'))
     else:
-        flash('You did not create this recepie!')
+        flash('You did not create this recipe!')
 
 
 @app.route('/add_comment/<recepie_id>', methods=['POST'])

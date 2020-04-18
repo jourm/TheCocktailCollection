@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}
-Edit {{ cocktail[name] }} Recipe
+Edit {{ recipe[name] }} Recipe
 {% endblock %}
 {% block content %}
 <div class="row">
 	<div class="card col-sm-12 col-md-8 center-card">
-		<form method="POST" action="/edit_recepie/{{ cocktail['_id'] }}">
+		<form method="POST" action="/edit_recipie/{{ recipe['_id'] }}">
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" value="{{cocktail['name']}}" class="form-control" id="name" name="name" maxlength="100" required>
+				<input type="text" value="{{recipe['name']}}" class="form-control" id="name" name="name" maxlength="100" required>
                  <small>Max 100 characters</small>
 	        </div>
 			<div class="form-group">
@@ -45,10 +45,10 @@ Edit {{ cocktail[name] }} Recipe
                     {% endfor %}
 				    </select>
 				</div>
-				<button id="add-ingredient" type="button" class="add-btn btn btn-success">Add to recepie</button>
+				<button id="add-ingredient" type="button" class="add-btn btn btn-success">Add to recipe</button>
 			</div>
 			<div id="ingredient-list">	
-            	{% for ingredient in cocktail['ingredients'] %}
+            	{% for ingredient in recipe['ingredients'] %}
 				<div class="form-row" id="added_ingredient{{ ingredient[4] }}">
 					<div class="form-group col-md-2">
 						<input type="number" class="form-control" value="{{ ingredient[0] }}" id="amount{{ ingredient[4] }}" name="ingredients">
@@ -67,12 +67,12 @@ Edit {{ cocktail[name] }} Recipe
 			</div>
 			<div class="form-group">
 				<label for="description">Description</label>
-				<textarea class="form-control" id="description" name="description" rows="4" maxlength="500" required> {{ cocktail['directions'] }}</textarea>
+				<textarea class="form-control" id="description" name="description" rows="4" maxlength="500" required> {{ recipe['directions'] }}</textarea>
                 <small>Max 500 characters</small>
 			</div>
 			<div class="formgroup">
 				<label for="img-url">Image Url</label>
-				<input class="form-control" value="{{ cocktail['img-url'] }}" id="img-url" name="img-url" maxlength="500" required>
+				<input class="form-control" value="{{ recipe['img-url'] }}" id="img-url" name="img-url" maxlength="500" required>
                  
             </div>
 			<button type="submit" class="btn btn-primary">Submit</button>
