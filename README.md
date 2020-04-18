@@ -17,20 +17,20 @@
 
 ## User Experience
  
-Visitors of the site:
+### Visitors of the site:
 There are three main categories of Visitors
 * Casual visitor, a visitor without much experience of makig cocktails.
 * Enthusiast visitor, a visitor with an intrest in and experience of making cocktails.
 * Professional visitor, a bartender or other such personel workning in the industry. 
- 
-As a casual visitor I want to find a recepie so that I can try and make it.
-As a casual visitor I want to find a few recepies so that I can dazzle my guests with them in a upcoming party.
-As a Enthusiast visitor I want to post my recepie so that I can get critique or tips from other users.
-As a Enthusiast visitor I want to find new recepie so that I can try it.
-As a Enthusiast visitor I want to find new recepies so that I can try and make my own version of.
-As a Enthusiast visitor I want to post my recepies so that I can save them for later use.
-As a Professional user I want to find inspiration for a new cocktail so that I can put it on my menu.
-As a Professional user I want to post my new recepie so that I can get some qritique before putting it on my menu.
+### User stories
+* As a casual visitor I want to find a recepie so that I can try and make it.
+* As a casual visitor I want to find a few recepies so that I can dazzle my guests with them in a upcoming party.
+* As a Enthusiast visitor I want to post my recepie so that I can get critique or tips from other users.
+* As a Enthusiast visitor I want to find new recepie so that I can try it.
+* As a Enthusiast visitor I want to find new recepies so that I can try and make my own version of.
+* As a Enthusiast visitor I want to post my recepies so that I can save them for later use.
+* As a Professional user I want to find inspiration for a new cocktail so that I can put it on my menu.
+* As a Professional user I want to post my new recepie so that I can get some qritique before putting it on my menu.
 
 ## Wireframes
 Thsese wireframes were created as a base for the project and the actual views may vary some.
@@ -102,4 +102,5 @@ This project uses a MongoDB based database hosted on [MongoDB Atlas](https://www
 #### [Heroku](https://www.heroku.com/)
 This project is hosted on Heroku.
 
-Testing 
+## Testing 
+### Testing of user stories 
