@@ -155,16 +155,16 @@ comments will be few and far appart. This userstory could be further fulfilled a
 * As a Enthusiast visitor I want to post my recepies so that I can save them for later use.  
 
 ### Manual testing of site functionality
-**Test:** Visit site as un registred user.
-**Expected Outcome:** 
-**Outcome:**
+**Test:** Visit site and find recipe for Negroni using the searchbar.  
+**Expected Outcome:** Landingpage displays, search shows recipe  for Negroni. Once Negroni is clicked, complete recipe displays.  
+**Outcome:** Landingpage displays, search shows recipe  for Negroni. Once Negroni is clicked, complete recipe displays.  
 
-**Test:**
-**Expected Outcome:**
-**Outcome:**
+**Test:** Create new account and log in to it.  
+**Expected Outcome:** Sign up form displays correctly and once submitted it is possible to sign in.  
+**Outcome:** Sign up form displays correctly and once submitted it is possible to sign in.  
 
-**Test:**
-**Expected Outcome:**
+**Test:** Create new recipe during recipe creation add incorect ingredient and remove it again.  
+**Expected Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.
 **Outcome:**
 
 **Test:**

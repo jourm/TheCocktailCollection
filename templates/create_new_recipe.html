@@ -5,7 +5,7 @@ Add New Cocktail Recipe
 {% block content %}
 <div class="row">
 	<div class="card col-sm-12 col-md-8 center-card">
-		<form method="POST" action="/add_cocktail">
+		<form method="POST" action="/create_new_recipe">
 			<div class="form-group">
 				<label for="name">Name</label>
 				<input type="text" class="form-control" id="name" name="name" maxlength="100" required>
@@ -48,6 +48,7 @@ Add New Cocktail Recipe
 							<button id="add-ingredient" type="button" class="add-btn btn btn-success">Add ingredient to recepie</button>
 						</div>
 						<div id="ingredient-list">
+                        <h2>Ingreients added:</h2>
 						</div>
 						<div class="form-group">
 							<label for="description">Description</label>
