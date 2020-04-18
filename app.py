@@ -167,15 +167,15 @@ def delete_recipe(recipe_id):
         flash('You did not create this recipe!')
 
 
-@app.route('/add_comment/<recepie_id>', methods=['POST'])
-def add_comment(recepie_id):
+@app.route('/add_comment/<recipe_id>', methods=['POST'])
+def add_comment(recipe_id):
     if 'username' in session:
-        recepie = mongo.db.recepies.find_one({'_id': ObjectId(recepie_id)})
+        recipe = mongo.db.recepies.find_one({'_id': ObjectId(recipe_id)})
         comment = {'username': session['username'],
                    'message': request.form['message']}
-        recepie['comments'].append(comment)
-        mongo.db.recepies.update({'_id': ObjectId(recepie_id)}, recepie)
-    return redirect(url_for('get_recepie', recepie_id=recepie_id))
+        recipe['comments'].append(comment)
+        mongo.db.recepies.update({'_id': ObjectId(recipe_id)}, recipe)
+    return redirect(url_for('get_recipe', recipe_id=recipe_id))
 
 
 @app.route('/delete_comment/<recepie_id>', methods=['POST'])
