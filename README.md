@@ -164,9 +164,9 @@ comments will be few and far appart. This userstory could be further fulfilled a
 **Outcome:** Sign up form displays correctly and once submitted it is possible to sign in.  
 
 **Test:** Create new recipe during recipe creation add incorect ingredient and remove it again.  
-**Expected Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.
-**Outcome:**
+**Expected Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.  
+**Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.  
 
-**Test:**
+**Test:** Comment on the newly created recipe twice, delete the comment then delete recipe.  
 **Expected Outcome:**
 **Outcome:**
