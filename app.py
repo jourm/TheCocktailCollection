@@ -93,18 +93,17 @@ def get_ingredient(ingredient_id):
 
 @app.route('/get_recepie/<recepie_id>')
 def get_recepie(recepie_id):
-    recepie = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
-    for ingredient in recepie['ingredients']:
-
+    recipe = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
+    for ingredient in recipe['ingredients']:
         ingredient.append(
             mongo.db.ingredients_new.find_one({"_id":
                                                ObjectId(ingredient[2])})['ingredient'])
     if 'user_id' in session:
         user = mongo.db.users.find_one({'_id': ObjectId(session['user_id'])})
         user['_id'] = str(user['_id'])
-        return render_template('get_cocktail.html', cocktail=recepie,
+        return render_template('get_recipe.html', recipe=recipe,
                                user=user)
-    return render_template('get_cocktail.html', cocktail=recepie, user=False)
+    return render_template('get_recipe.html', recipe=recipe, user=False)
 
 
 @app.route('/edit_recepie/<recepie_id>', methods=['GET', 'POST'])
