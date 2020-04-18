@@ -178,15 +178,15 @@ def add_comment(recipe_id):
     return redirect(url_for('get_recipe', recipe_id=recipe_id))
 
 
-@app.route('/delete_comment/<recepie_id>', methods=['POST'])
-def delete_comment(recepie_id):
-    recepie = mongo.db.recepies.find_one({'_id': ObjectId(recepie_id)})
+@app.route('/delete_comment/<recipe_id>', methods=['POST'])
+def delete_comment(recipe_id):
+    recipe = mongo.db.recepies.find_one({'_id': ObjectId(recipe_id)})
     username = request.form['username']
     message = request.form['message_d']
-    recepie['comments'].remove({'username': username,
+    recipe['comments'].remove({'username': username,
                                 'message': message})
-    mongo.db.recepies.update({'_id': ObjectId(recepie_id)}, recepie)
-    return redirect(url_for('get_recepie', recepie_id=recepie_id))
+    mongo.db.recepies.update({'_id': ObjectId(recipe_id)}, recipe)
+    return redirect(url_for('get_recipe', recipe_id=recipe_id))
 
 
 @app.route('/user_home')
