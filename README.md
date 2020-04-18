@@ -141,7 +141,8 @@ comments will be few and far appart. This userstory could be further fulfilled a
 * As a Enthusiast visitor I want to post my recepies so that I can save them for later use.
 **Test:** Go to [https://the-cocktail-collection.herokuapp.com](https://the-cocktail-collection.herokuapp.com) after logging in Create new recipe. After the recipe has been created it can be searched for, seen, and commented on by all logged in users.  
 **Outcome:** The create new recipe page adds any recipe created to the database and it can then be searched for in the searchbar and commented on by logged in users. The user story is fullfilled, but could be further fullfilled by adding the nefore mentioned user page where all recipies created by the users are avliable.  
-**Professional user**
+
+**Professional users:**
 The Professional usergroup are seen as one that might frquent the site an therefore, to fullfill some of the userstories of professionals, creating an account is required.  
 * As a Professional user I want to find inspiration for a new cocktail so that I can put it on my menu.  
 **Test:** Go to [https://the-cocktail-collection.herokuapp.com](https://the-cocktail-collection.herokuapp.com) find a new recipe.  
@@ -153,4 +154,19 @@ and New recipes section features so that trends in the community and new innovat
 comments will be few and far appart. This userstory could be further fulfilled adding the previously mentioned New recipes section.  
 * As a Enthusiast visitor I want to post my recepies so that I can save them for later use.  
 
-### Manual testing of site functionality.
+### Manual testing of site functionality
+**Test:** Visit site as un registred user.
+**Expected Outcome:** 
+**Outcome:**
+
+**Test:**
+**Expected Outcome:**
+**Outcome:**
+
+**Test:**
+**Expected Outcome:**
+**Outcome:**
+
+**Test:**
+**Expected Outcome:**
+**Outcome:**

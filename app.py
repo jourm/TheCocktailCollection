@@ -18,17 +18,17 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    recepies = mongo.db.recepies.find().sort('_id', pymongo.ASCENDING).limit(30)
-    return render_template('home.html', recepies=recepies)
+    recipes = mongo.db.recepies.find().sort('_id', pymongo.ASCENDING).limit(30)
+    return render_template('home.html', recepies=recipes)
 
 
 @app.route('/search', methods=['POST'])
 def search():
-    recepies = mongo.db.recepies.find({"$text": {"$search":
-                                       request.form['name']}})
+    recipes = mongo.db.recepies.find({"$text": {"$search":
+                                      request.form['name']}})
     
-    if recepies.count() >= 1:
-        return render_template('home.html', recepies=recepies)
+    if recipes.count() >= 1:
+        return render_template('home.html', recepies=recipes)
     ingredient = mongo.db.ingredients_new.find({'ingredient':
                                                 request.form['name']})
     if ingredient.count() == 1:
@@ -37,10 +37,10 @@ def search():
         return render_template('no_result.html')
 
 
-@app.route('/add_cocktail', methods=['GET', 'POST'])
-def add_cocktail():
+@app.route('/create_new_recipe', methods=['GET', 'POST'])
+def create_new_recipe():
     if request.method == 'GET':
-        return render_template('add_cocktail.html',
+        return render_template('create_new_recipe.html',
                                ingredients=mongo.db.ingredients_new.find())
 
     elif request.method == 'POST':
@@ -69,7 +69,7 @@ def add_cocktail():
                        'author': ''}
 
         mongo.db.recepies.insert_one(new_doc)
-        return render_template('add_cocktail.html',
+        return render_template('create_new_recipe.html',
                                ingredients=mongo.db.ingredients_new.find())
 
 

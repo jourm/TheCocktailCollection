@@ -7,8 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>{% block title %} {% endblock %}</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">
-    
+		integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">    
     <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
 </head>
 
@@ -28,7 +27,7 @@
 				</li>
                 {% if 'username' in session %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{url_for('add_cocktail')}}">Add Cocktail</a>
+					<a class="nav-link" href="{{url_for('create_new_recipe')}}">Create New Recipe</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{url_for('add_ingredient')}}">Add Ingredient</a>
