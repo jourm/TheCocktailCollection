@@ -62,11 +62,12 @@ For logged in users this page also features a comment section where comments can
 
 
 ## Features to implement
+Here are a list of features to imlement, in no particular order, to improve the functionality of the site.
 * Advanced search, where users can seacrh for recepies based on ingredients or style of cocktail. This advanced search would have a feature where users can input what they have at home and get recipes containing those ingredients.
 * Direct messaging, were users can send each other direct messages with tips or suggestions.
 * User home page, Where users can uppload a profile picture and write about thier experience in the art of mixology.
 * Most popular carousel on the homepage where the most visited recepies over the last week can be displayed.
-* Clone button, that leads to a page similar to edit recepie, but instead saves as a new recepie, this would allow users to easily create their own version or a twist on a already existing cocktail.
+* Clone recipe button, that leads to a page similar to edit recepie, but instead saves as a new recepie, this would allow users to easily create their own version or a twist on a already existing cocktail.
 * Tools used/recommended page where Affiliate links to tools can be posted so users can se what tools they need to buy.
 * Rating system, where users can rate recepies 1-5 stars.
 * Top list where the top rated recepies are displayed.
@@ -101,6 +102,39 @@ This project uses the Jinja template engine.
 This project uses a MongoDB based database hosted on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 #### [Heroku](https://www.heroku.com/)
 This project is hosted on Heroku.
+#### [TheCocktail DB api](https://www.thecocktaildb.com/)
+The Ingredients and recipes collection on this site were built by calling the Cocktail db api, formating the appropriate information and insering the records into the database.
 
 ## Testing 
 ### Testing of user stories 
+####
+**Casual users:**  
+This usergroup was seen as on that might visit the site, but not as frequently as the others. Therefor, to fullfill the userstories of a casual user, no login is required.  
+* As a casual visitor I want to find a recepie so that I can try and make it.  
+**Test:** Go to [https://the-cocktail-collection.herokuapp.com](https://the-cocktail-collection.herokuapp.com) find a new recipe.  
+**Outcome:** The homepage features 30 recipes that can be tried aswell as e searchbar for further exploration. The user story fullfilled, but could be further improved by adding the previousle mentioned Advanced search 
+and Most popular features as well as randomizing the 30 recipes displayed on the Homepage.
+
+* As a casual visitor I want to find a few recepies so that I can dazzle my guests with them in a upcoming party.  
+**Test:** Go to [https://the-cocktail-collection.herokuapp.com](https://the-cocktail-collection.herokuapp.com) and find some recipes.
+**Outcome:**The homepage features 30 recipes that can be tried aswell as e searchbar for further exploration. The user story is fullfilled, but could be further improved by adding the previousle mentioned Advanced search 
+and most popular features as well as randomizing the 30 recipes displayed on the Homepage.  
+
+**Enthusiast users:**  
+The Enthusiast usergroup are seen as on that might frquent the site an therefore, to fullfill some of the userstories of enthusiasts, creating an account is required.
+ If affiliate links to tools or glasses would be implemented, this usergroup is the main target.  
+* As a Enthusiast visitor I want to find new recepie so that I can try it.
+**Test:** Go to [https://the-cocktail-collection.herokuapp.com](https://the-cocktail-collection.herokuapp.com) find a new recipe.  
+**Outcome:**The homepage features 30 recipes that can be tried aswell as e searchbar for further exploration. The user story fullfilled, but could be further improved by adding the previousle mentioned Advanced search 
+and Top list features as well as randomizing the 30 recipes displayed on the Homepage.
+
+* As a Enthusiast visitor I want to find new recepies so that I can try and make my own version of.  
+**Test:** Go to [https://the-cocktail-collection.herokuapp.com](https://the-cocktail-collection.herokuapp.com) find a new recipe. To save the new recipe, go to [http://the-cocktail-collection.herokuapp.com/register](Register), sign up, log in, and the Create new recipe will be avliable in the navbar, there the new recipe can be created and saved.  
+**Outcome:**The homepage features 30 recipes that can be tried aswell as e searchbar for further exploration. The user story fullfilled, but could be further improved by adding the previousle mentioned Advanced search, 
+Top list, Clone recipe, Collect recipe and User Homepage features as well as randomizing the 30 recipes displayed on the Homepage.
+
+**Test:** 
+**Outcome:**
+
+**Test:** 
+**Outcome:**
