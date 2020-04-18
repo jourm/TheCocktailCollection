@@ -113,6 +113,7 @@ def edit_recipe(recipe_id):
         if request.method == 'GET':
             counter = 0
             for ingredient in recipe['ingredients']:
+                ingredient[0] = ingredient[0].rstrip()
                 ingredient.append(mongo.db.ingredients_new.find_one
                                   ({"_id":
                                     ObjectId(ingredient[2])})['ingredient'])
