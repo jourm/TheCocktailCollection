@@ -4,7 +4,8 @@
 [To wiew project deplyed on heroku](https://the-cocktail-collection.herokuapp.com/)
 </div>
 
-![]()
+![Image of landingpage](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/landingpage.png)
+
 Making cocktails is a fun and rewardung hobby enjoyed by many. 
 There is for exaple a large subreddit about the subject that is very active.
 The Cocktail collection is a community driven site dedicated to cocktails and was developed as a full stack education project using
@@ -48,6 +49,11 @@ Thsese wireframes were created as a base for the project and the actual views ma
 [Create Ingredient Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/create_new_ingredient.PNG)
 [Register Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/register.PNG)
 [Sign in Page](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/singin.PNG)
+
+## Design Choises
+Since the main focus in this project has been backend and databse handeling a basic Bootstrap theme was used to provide the majority f the styling in this project.
+A dark theme with Mint accents was chosen to keep the site looking modern and clean. To add some modern and "bespoke" feeling to the site, a blurry black and white image of a barshelf was added as a background immage for all pages.
+If there was more time spent on this project, more custom css, fonts etc could be edited to further improve the feel of the site.
 
 ## Features 
 #### Navbar
@@ -216,4 +222,26 @@ comments will be few and far appart. This userstory could be further fulfilled a
 **Passed:** Yes  
 
 
-## Deployment
+## Deployment 
+## How to run this project locally.
+* Make sure you have a IDE with a virtual enviroment running python3. Preferably gitpod online IDE.
+This description will be based on you using Gitpod online IDE. 
+* Go to [https://github.com/jourm/TheCocktailCollection](https://github.com/jourm/TheCocktailCollection) if you have Gitpod extension installed in you browser, a button with Gitpod will be visible next to clone/download press Gitpod.
+* This will open the project in gitpod Online IDE. 
+* Use pip to install all the required packages in requirements.txt 
+* Register for an acount at https://www.mongodb.com/cloud/atlas. Create collections named: ingType, ingredients_new users and recepies(spelled incorectly, but unfortunatly mongo does not let collection names be changed once created.)
+* Follow the MongoDB instructions for setting up connetion to your database( createing user, allowning network access)
+* On the clusters page of you database, click connect > connect your application > select the latest version of python and copy the connection string.
+* In your gitpod project create a new file called env.py import os and set os.environ["MONGO_URI"] = your connection string, make sure to replace <password> with your password.
+* Add os.environ["SECRET"] = a random string of letters and numbers to env.py
+* Run files in this order: dbbuilder.py, cocktaildbbuilder.py and finally create_dbindex.py, to populate ingType collection, ingredients_new collection, recepies collection and create a text searceable index for recepies collection.
+* Run app.py and click open ports and open in browser to se the running project.
+
+## Deploy on heroku.
+* First follow steps to run project locally.
+* Commit and push project to your github account.
+* Create Heroku account.
+* Create new app.
+* On heroku, go to deploy > connect to github repo and connect heroku to you github repo.
+* Settings > set config vars and set MONGO_URI and SECRET to the strings in your env.py, Set IP to 0.0.0.0 and PORT to 5000.
+* Go to deploy, scroll down and click "enable automatic deploys"

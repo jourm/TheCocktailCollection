@@ -10,6 +10,7 @@ if path.exists("env.py"):
 MONGO_URI = os.environ.get("MONGO_URI")
 DBS_NAME = "TheCocktailCollection"
 COLLECTION_NAME = "ingredients_new"
+""" This pythonfile when run fills the ingType and ingredients_new of the mongodb cluster specified in env.py"""
 
 
 def getnewingredient(id):
@@ -55,8 +56,7 @@ for i in range(1, 1000):
         if new_ingredient['type'] not in categories:
             categories.append(new_ingredient['type'])
         coll.insert_one(new_ingredient)
-# print(categories)
 
 
-# for i in categories:
-#    coll_intype.insert_one({'name': i})
+for i in categories:
+    coll_intype.insert_one({'name': i})
