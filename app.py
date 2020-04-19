@@ -59,14 +59,16 @@ def create_new_recipe():
                        'ingredients': ingredient_list,
                        'directions': directions,
                        'img-url': url,
-                       'author': session['user_id']}
+                       'author': session['user_id'],
+                       'comments': []}
         else:
             new_doc = {'name': name,
                        'glass_type': glass_type,
                        'ingredients': ingredient_list,
                        'directions': directions,
                        'img-url': url,
-                       'author': ''}
+                       'author': '',
+                       'comments': []}
 
         mongo.db.recepies.insert_one(new_doc)
         return render_template('create_new_recipe.html',

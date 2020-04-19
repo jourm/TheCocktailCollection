@@ -167,6 +167,6 @@ comments will be few and far appart. This userstory could be further fulfilled a
 **Expected Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.  
 **Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.  
 
-**Test:** Comment on the newly created recipe twice, delete the comment then delete recipe.  
-**Expected Outcome:**
+**Test:** Comment on the newly created recipe twice, delete the comment. 
+**Expected Outcome:** Comments appears after being posted with visible delete button, and is removed when delete button is pressed.
 **Outcome:**
