@@ -4,6 +4,13 @@
 [To wiew project deplyed on heroku](https://the-cocktail-collection.herokuapp.com/)
 </div>
 
+![]()
+Making cocktails is a fun and rewardung hobby enjoyed by many. 
+There is for exaple a large subreddit about the subject that is very active.
+The Cocktail collection is a community driven site dedicated to cocktails and was developed as a full stack education project using
+Html, Css, JavaScript for the frontend, Python and Flask for the backend and a Mongodb based Database.
+The main purpuse was to learn and demonstrate database handeling in a NoSQL enviroment using python.
+Therefore, more focus has been placed on the datastructure and backend than the frontend. 
 
 
 ## Business goals of the site:
@@ -44,7 +51,7 @@ Thsese wireframes were created as a base for the project and the actual views ma
 
 ## Features 
 #### Navbar
-* Avliable on all pages 
+* Avliable on all pages and features links for Home, Sign In, Sign up and a searchbar for users not logged in and Home, Create New Recipe, Add Ingredient, Sign out and A searchbar for users that have been logged in.
 
 #### Ingredients
 * A Mongodb collection of over 400 ingredients that are used for creating new recipes. This collection of ingredients was created from https://www.thecocktaildb.com/ Api.
@@ -52,13 +59,21 @@ Thsese wireframes were created as a base for the project and the actual views ma
 * Ingredient page, where an image and some basic information about the ingredient can be accessed.
 #### Recipes
 * A Mongodb collection of over 400 recipes with a text based index making the collection searcheable. This collection of recipes was created from https://www.thecocktaildb.com/ Api.
-* Add recipe page, where new recipes can be created from the ingredients in the database. The link to this hidden from users that are not logged in.
-* Edit recepie page, very similar to add recipe page, but filled out with the recipe to edit and only avliable to the author of a recipe from the recipe page.
+* Create new recipe page, where new recipes can be created from the ingredients in the database. This page features a form that is expanded when more ingredients are added using javascript. The form uses
+ a few different input types to steer the user to input the correct data form as well as some html verification.
+But there is currently no serverside valification to block malicous users. The link to this hidden from users that are not logged in.
+* Edit recepie page, very similar to add recipe page, but filled out with the recipe to edit and only avliable to the author of a recipe from the recipe page. This page features a form that is expanded when more ingredients are added using javascript. The form uses
+ a few different input types to steer the user to input the correct data form as well as some html verification.
+But there is currently no serverside valification to block malicous users. The link to this hidden from users that are not logged in.
 * Display recipe page, where the recipe is displayed with an image, the glass to use, a list of ingredients with links to the ingreient page, and directions on how to make the cocktail.
 For logged in users this page also features a comment section where comments can be posted, and for the author of the recipe there are buttons to delete comments and delete or edit the recipe.
 #### User Registration and login
 * Sign up page where visitors of the site can create a account to get access to posting comments and creating new recepies and ingredients.
 * Sign in page where users that have registerd can log in to their accounts.
+#### The Database:
+![database](https://github.com/jourm/TheCocktailCollection/blob/master/static/images/wireframes/Datastructure.png)
+This is a visual representation of the database that shows its structure, It features 4 collections, Recipes, Ingredients, Users and Igredeint types, as well as plans for expansion.
+It is a non relational database, but there are some cases where an id of items in another collection are stored for improved stability if there are chnages to those items. As is visible in the image there are plans for expansion od the database.
 
 
 ## Features to implement
@@ -189,3 +204,16 @@ comments will be few and far appart. This userstory could be further fulfilled a
 **Expected Outcome:**  Browser asks for fields to be filled.  
 **Outcome:**  Browser asks for fields to be filled.  
 **Passed:** Yes  
+
+**Test:** Sign out.  
+**Expected Outcome:**  Session cookie is cleared and no account is logged in.   
+**Outcome:**  Session cookie is cleared and no account is logged in.  
+**Passed:** Yes  
+
+**Test:** View on diferent sceen sizes and different browsers (Google Chrome, Mozilla Firefox, Safari, Microsoft edge).  
+**Expected Outcome:**  Site behaves the same as in google chrome where it was developed.  
+**Outcome:**  Site behaves the same as in google chrome where it was developed.  
+**Passed:** Yes  
+
+
+## Deployment
