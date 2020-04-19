@@ -158,27 +158,34 @@ comments will be few and far appart. This userstory could be further fulfilled a
 **Test:** Visit site and find recipe for Negroni using the searchbar.  
 **Expected Outcome:** Landingpage displays, search shows recipe  for Negroni. Once Negroni is clicked, complete recipe displays.  
 **Outcome:** Landingpage displays, search shows recipe  for Negroni. Once Negroni is clicked, complete recipe displays.  
+**Passed:** Yes  
 
 **Test:** Create new account and log in to it.  
 **Expected Outcome:** Sign up form displays correctly and once submitted it is possible to sign in.  
 **Outcome:** Sign up form displays correctly and once submitted it is possible to sign in.  
+**Passed:** Yes  
 
 **Test:** Create new recipe during recipe creation add incorect ingredient and remove it again.  
 **Expected Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.  
 **Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.  
+**Passed:** Yes  
 
 **Test:** Comment on the newly created recipe twice, delete one comment.  
 **Expected Outcome:** Comments appears after being posted with visible delete button, and is removed when delete button is pressed.  
 **Outcome:** Comments appears after being posted with visible delete button, and is removed when delete button is pressed.  
+**Passed:** Yes  
 
 **Test:** Delete recepie.  
 **Expected Outcome:** Recipe is deleted from database and can no longer be found when searching.  
 **Outcome:** Recipe is deleted from database and can no longer be found when searching.  
+**Passed:** Yes  
 
 **Test:** Try to delete, edit recipe and comments on a recipe created by another user.  
 **Expected Outcome:** No delete or edit buttons avialble on the page.  
 **Outcome:** No delete or edit buttons avialble on the page.  
+**Passed:** Yes  
 
-**Test:** Input empty strings  
-**Expected Outcome:**
-**Outcome:**
+**Test:** Input empty fields in forms.  
+**Expected Outcome:**  Browser asks for fields to be filled.  
+**Outcome:**  Browser asks for fields to be filled.  
+**Passed:** Yes  
