@@ -1,4 +1,4 @@
-# The Coctail Collection
+# The Cocktail Collection
  <div align="center"> 
 
 [To wiew project deplyed on heroku](https://the-cocktail-collection.herokuapp.com/)
