@@ -167,6 +167,18 @@ comments will be few and far appart. This userstory could be further fulfilled a
 **Expected Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.  
 **Outcome:** Form for creating recipe displays corectly and delete ingredient works once the recipe is submitted it is searcheable in the seachbar.  
 
-**Test:** Comment on the newly created recipe twice, delete the comment. 
-**Expected Outcome:** Comments appears after being posted with visible delete button, and is removed when delete button is pressed.
+**Test:** Comment on the newly created recipe twice, delete one comment.  
+**Expected Outcome:** Comments appears after being posted with visible delete button, and is removed when delete button is pressed.  
+**Outcome:** Comments appears after being posted with visible delete button, and is removed when delete button is pressed.  
+
+**Test:** Delete recepie.  
+**Expected Outcome:** Recipe is deleted from database and can no longer be found when searching.  
+**Outcome:** Recipe is deleted from database and can no longer be found when searching.  
+
+**Test:** Try to delete, edit recipe and comments on a recipe created by another user.  
+**Expected Outcome:** No delete or edit buttons avialble on the page.  
+**Outcome:** No delete or edit buttons avialble on the page.  
+
+**Test:** Delete recepie.  
+**Expected Outcome:**
 **Outcome:**
