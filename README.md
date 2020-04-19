@@ -21,7 +21,8 @@ Therefore, more focus has been placed on the datastructure and backend than the 
 ## Visitor goals of the site:
 
 * Find new interesting recepie to try.
-* Look up multiple spots to decide on where to go.
+* Save recipes for later.
+* Post recipes to get critique on.
 
 ## User Experience
  
