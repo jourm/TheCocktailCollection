@@ -179,6 +179,6 @@ comments will be few and far appart. This userstory could be further fulfilled a
 **Expected Outcome:** No delete or edit buttons avialble on the page.  
 **Outcome:** No delete or edit buttons avialble on the page.  
 
-**Test:** Delete recepie.  
+**Test:** Input empty strings  
 **Expected Outcome:**
 **Outcome:**
