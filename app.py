@@ -128,7 +128,7 @@ def edit_recipe(recipe_id):
 
         if request.method == 'POST':
             name = request.form['name']
-            drink_type = request.form['type']
+            glass_type = request.form['glass_type']
             ingredients = request.form.getlist('ingredients')
 
             ingredient_list = []
@@ -139,14 +139,14 @@ def edit_recipe(recipe_id):
             url = request.form['img-url']
             if 'user_id' in session:
                 new_doc = {'name': name,
-                           'drink_type': drink_type,
+                           'glass_type': glass_type,
                            'ingredients': ingredient_list,
                            'directions': directions,
                            'img-url': url,
                            'author': session['user_id']}
             else:
                 new_doc = {'name': name,
-                           'drink_type': drink_type,
+                           'glass_type': glass_type,
                            'ingredients': ingredient_list,
                            'directions': directions,
                            'img-url': url,
