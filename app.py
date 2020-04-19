@@ -45,7 +45,7 @@ def create_new_recipe():
 
     elif request.method == 'POST':
         name = request.form['name']
-        glass_type = request.form['type']
+        glass_type = request.form['glass_type']
         ingredients = request.form.getlist('ingredients')
         ingredient_list = []
         for i in range(0, len(ingredients), 3):
